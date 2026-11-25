@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-[#FAFAFA]">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal del Paciente - Carino Dental Studio</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="img/favicon-carino-logo.png">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Fuentes Google: Cormorant Garamond, Inter & Cinzel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  
+  <link rel="stylesheet" href="css/odontograma.css">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #FAFAFA !important;
+      color: #171717 !important;
+    }
+    .font-serif {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+    .font-brand {
+      font-family: 'Cinzel', Georgia, serif;
+      letter-spacing: 0.15em;
+    }
+    .gold-gradient-text {
+      color: #0C6059;
+      font-weight: 700;
+    }
+    .gold-border {
+      border-color: rgba(12, 96, 89, 0.4);
+    }
+    .gold-border-glow:hover {
+      border-color: #0C6059;
+      box-shadow: 0 0 16px rgba(12, 96, 89, 0.2);
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, #0E6A60 0%, #0C6059 55%, #084D47 100%) !important;
+      color: #FFFFFF !important;
+      font-weight: 700;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-gold:hover {
+      background: linear-gradient(135deg, #0C6059 0%, #08534C 55%, #084943 100%) !important;
+      box-shadow: 0 4px 16px rgba(12, 96, 89, 0.35) !important;
+      transform: translateY(-1px);
+    }
+    .btn-gold:active {
+      transform: translateY(0) scale(0.98);
+    }
+    .nav-item {
+      color: #525252 !important;
+    }
+    .nav-item:hover {
+      background-color: #F4F4F4 !important;
+      color: #171717 !important;
+    }
+    .nav-item-active {
+      background: linear-gradient(90deg, rgba(12, 96, 89, 0.16) 0%, rgba(12, 96, 89, 0.04) 100%) !important;
+      border-left: 3px solid #0C6059 !important;
+      color: #084D47 !important;
+      font-weight: 700 !important;
+    }
+    .slot-btn {
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.18s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .slot-btn.disponible {
+      background-color: #FFFFFF !important;
+      color: #171717 !important;
+      border: 1.5px solid #8A8A8A !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+    .slot-btn.disponible:hover {
+      background-color: #EAF5F2 !important;
+      border-color: #0C6059 !important;
+      transform: translateY(-1.5px);
+      box-shadow: 0 4px 12px rgba(12, 96, 89, 0.25) !important;
+    }
+    .slot-btn.disponible.selected {
+      background: linear-gradient(135deg, #0E6A60 0%, #0C6059 100%) !important;
+      color: #FFFFFF !important;
+      border: 1.5px solid #FFFFFF !important;
+      box-shadow: 0 0 16px rgba(12, 96, 89, 0.4) !important;
+      transform: scale(1.03);
+    }
+    .slot-btn.ocupado {
+      background-color: #262626 !important;
+      color: #D4D4D4 !important;
+      border: 1px solid #404040 !important;
+      cursor: not-allowed;
+      opacity: 0.9;
+    }
+    /* Tarjetas del Paciente */
+    .tab-paciente-content > div {
+      background-color: #FFFFFF;
+      color: #171717;
+      border-color: #E5E5E5;
+    }
+    .tab-paciente-content input, .tab-paciente-content select, .tab-paciente-content textarea {
+      background-color: #FAFAFA !important;
+      color: #171717 !important;
+      border-color: #8A8A8A !important;
+    }
+    .tab-paciente-content input:focus {
+      background-color: #FFFFFF !important;
+      border-color: #0C6059 !important;
+    }
+
+    #pacienteNotifBadge { animation-name: pulse-notification-color; }
+    @keyframes pulse-notification-color { 50% { background-color: #9B2626; } }
+  </style>
+</head>
+<body class="h-full flex overflow-hidden antialiased bg-[#FAFAFA] text-[#171717]">
+
+  <!-- ===================================================================
+       BARRA LATERAL IZQUIERDA (PORTAL PACIENTE - 2 MÓDULOS)
+       Responsive: Drawer en móvil/tablet y fija en desktop
+       =================================================================== -->
+  <aside id="sidebarPaciente" class="w-64 sm:w-72 bg-white border-r border-neutral-200 flex flex-col justify-between shrink-0 fixed inset-y-0 left-0 z-50 lg:static transition-transform duration-300 -translate-x-full lg:translate-x-0 shadow-2xl lg:shadow-none">
+    
+    <!-- Parte Superior: Marca, Perfil del Paciente y los 2 Módulos -->
+    <div class="p-4 sm:p-5 flex flex-col space-y-4">
+      
+      <!-- Logo y Marca Carino Dental Studio con Pulso en Vivo -->
+      <div class="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center pb-3 border-b border-neutral-200">
+        <a href="index.html" class="relative col-start-2 inline-flex items-center rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0C6059]">
+          <img src="img/logo-carino-encabezado.png" alt="Carino Dental Studio" width="361" height="162" class="block h-auto w-24 sm:w-28">
+          <span class="absolute left-full top-1/2 ml-2.5 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-[#0C6059] animate-pulse" title="Portal en tiempo real"></span>
+        </a>
+
+        <!-- Botón cerrar menú en móviles -->
+        <button id="btnCerrarSidebarMobile" class="col-start-3 justify-self-end lg:hidden text-neutral-600 hover:text-neutral-900 p-1.5 rounded-lg bg-neutral-100">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Tarjeta de Paciente Activo -->
+      <div class="p-3 rounded-xl bg-[#EAF5F2] border border-[#0C6059]/30 flex items-center gap-3 shadow-inner">
+        <div id="pacienteAvatarInitials" class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#0C6059] to-[#0E6A60] text-white font-extrabold flex items-center justify-center text-sm shadow-md shrink-0">
+          DQ
+        </div>
+        <div class="overflow-hidden flex-1">
+          <div class="flex items-center gap-1.5">
+            <span id="pacienteNombreSidebar" class="text-xs font-bold text-neutral-900 truncate block">Paciente Demo 03</span>
+          </div>
+          <p id="pacienteEmailSidebar" class="text-[10px] text-neutral-600 truncate">paciente05@clinica.example</p>
+          <span id="pacienteTipoBadge" class="inline-block mt-0.5 text-[9px] font-bold px-1.5 py-0.2 rounded bg-emerald-500/20 text-[#0C6059] border border-emerald-500/30">
+            CONTROL MENSUAL
+          </span>
+        </div>
+      </div>
+
+      <!-- LOS 2 MÓDULOS DEL PACIENTE SOLICITADOS POR EL USUARIO -->
+      <div class="space-y-1 pt-1">
+        <div class="px-2 pb-1 text-[10px] font-bold text-[#0C6059] tracking-wider uppercase flex items-center justify-between">
+          <span>Tus Módulos</span>
+          <span class="text-[9px] bg-neutral-100 text-neutral-600 px-1.5 py-0.5 rounded">2 Módulos</span>
+        </div>
+
+        <!-- MÓDULO 1: MI TRATAMIENTO -->
+        <button id="navItemTratamiento" type="button" onclick="switchModulePaciente('modulo-tratamiento')" class="nav-item-paciente nav-item-active w-full text-left px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-between text-neutral-700 hover:text-neutral-900 transition hover:bg-neutral-100/60" data-target="modulo-tratamiento">
+          <div class="flex items-center gap-2.5">
+            <span class="text-base">🦷</span>
+            <div>
+              <span class="block text-neutral-700 font-bold">1. Mi Tratamiento</span>
+              <span class="block text-[10px] text-[#0C6059] font-normal">Fase activa & recado médico</span>
+            </div>
+          </div>
+          <span class="w-1.5 h-1.5 rounded-full bg-[#0C6059]"></span>
+        </button>
+
+        <!-- MÓDULO 2: SEGUIMIENTO MENSUAL (EXACTO A IMAGEN 2) -->
+        <button id="navItemControles" type="button" onclick="switchModulePaciente('modulo-controles')" class="nav-item-paciente w-full text-left px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-between text-neutral-600 hover:text-neutral-900 transition hover:bg-neutral-100/60" data-target="modulo-controles">
+          <div class="flex items-center gap-2.5">
+            <span class="text-base">📋</span>
+            <div>
+              <span class="block text-neutral-700 font-medium">2. Seguimiento</span>
+              <span class="block text-[10px] text-neutral-600 font-normal">Controles y asistencias</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- MÓDULO 3: MI PERFIL -->
+        <button id="navItemPerfil" type="button" onclick="switchModulePaciente('modulo-perfil')" class="nav-item-paciente w-full text-left px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-between text-neutral-600 hover:text-neutral-900 transition hover:bg-neutral-100/60" data-target="modulo-perfil">
+          <div class="flex items-center gap-2.5">
+            <span class="text-base">👤</span>
+            <div>
+              <span class="block text-neutral-700 font-medium">3. Mi Perfil</span>
+              <span class="block text-[10px] text-neutral-600 font-normal">Mis datos & credenciales</span>
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <!-- ACCIÓN RÁPIDA: AGENDAR OTRA CITA -->
+      <div class="pt-2">
+        <button id="btnAbrirModalAgendarPaciente" type="button" class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#0E6A60] to-[#0C6059] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md hover:brightness-110 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <span>Agendar Cita Extra</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Parte Inferior: Enlace al Inicio & Cerrar Sesión -->
+    <div class="p-4 border-t border-neutral-200/80 space-y-2">
+      <a href="index.html" class="flex items-center gap-2 px-3 py-2 text-xs text-neutral-600 hover:text-[#0C6059] rounded-lg transition hover:bg-neutral-100/50">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+        <span>Volver a la Portada</span>
+      </a>
+      <button id="btnCerrarSesionPaciente" type="button" class="w-full text-left flex items-center gap-2 px-3 py-2 text-xs text-[#9B2626] hover:text-[#9B2626] rounded-lg transition hover:bg-[#B33434]/10">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+        <span>Cerrar Sesión</span>
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- ===================================================================
+       CONTENIDO PRINCIPAL: ANCHO COMPLETO Y RESPONSIVE
+       =================================================================== -->
+  <div class="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
+    
+    <!-- Barra Superior Móvil / Tablet con Botón Menú -->
+    <header class="bg-white/95 border-b border-neutral-200 px-4 py-3 flex items-center justify-between shrink-0">
+      <div class="flex items-center gap-3">
+        <button id="btnAbrirSidebarMobile" class="lg:hidden text-neutral-700 hover:text-neutral-900 p-1.5 rounded-lg bg-neutral-100">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+        <div>
+          <h1 id="headerTituloModulo" class="text-sm sm:text-base font-bold text-neutral-900 flex items-center gap-2">
+            <span>🦷</span> Módulo 1: Mi Tratamiento & Lo Que Te Harán
+          </h1>
+          <p class="text-[11px] text-neutral-600 hidden sm:block">
+            Detalle clínico personalizado y procedimientos paso a paso del Dr. Kevin Jhon Lindo Alfaro
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- BOTÓN DE NOTIFICACIONES / AVISOS DEL PACIENTE ARRIBA AL COSTADO DE LA FECHA -->
+        <div class="relative">
+          <button id="btnNotificacionesPaciente" type="button" class="relative p-2 px-2.5 rounded-xl bg-[#EAF5F2] hover:bg-neutral-100 border border-[#0C6059]/40 hover:border-[#0E6A60] text-neutral-700 transition flex items-center gap-1.5 shadow-sm" title="Avisos sobre tu tratamiento, próxima cita y recados del doctor">
+            <svg class="w-4 h-4 text-[#0C6059]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+            </svg>
+            <span class="text-xs font-bold text-neutral-900 hidden sm:inline">Mis Avisos</span>
+            <span id="pacienteNotifBadge" class="bg-[#B33434] text-white font-extrabold text-[10px] w-5 h-5 rounded-full flex items-center justify-center animate-pulse">3</span>
+          </button>
+
+          <!-- Dropdown Flotante de Notificaciones del Paciente -->
+          <div id="dropdownNotificacionesPaciente" class="hidden absolute right-0 mt-2 w-80 sm:w-96 bg-white rounded-2xl shadow-2xl border border-[#0C6059]/40 z-50 p-3.5 backdrop-blur-md">
+            <div class="flex items-center justify-between pb-2 border-b border-neutral-200">
+              <div class="flex items-center gap-1.5">
+                <span class="text-xs font-bold text-neutral-900">Avisos de tu Tratamiento</span>
+                <span class="w-2 h-2 rounded-full bg-[#0C6059] animate-ping"></span>
+              </div>
+              <button id="btnLimpiarNotifsPaciente" type="button" class="text-[10px] text-neutral-600 hover:text-[#0C6059] font-semibold">Marcar Leídos</button>
+            </div>
+            <div id="listaNotifsPaciente" class="max-h-72 overflow-y-auto divide-y divide-neutral-200/80 my-2 space-y-1.5">
+              <!-- Inyectado dinámicamente por paciente.js -->
+            </div>
+            <div class="pt-1.5 border-t border-neutral-200 text-[10px] text-neutral-600 text-center flex items-center justify-center gap-1">
+              <span>🦷</span> Sincronizado en vivo con Carino Dental Studio
+            </div>
+          </div>
+        </div>
+
+        <span class="text-xs text-neutral-600 hidden md:inline" id="pacienteFechaActual">Miércoles, 18 de Noviembre de 2026</span>
+
+        <div class="hidden sm:flex items-center gap-2 bg-[#EAF5F2] px-3 py-1.5 rounded-xl border border-[#0C6059]/30 text-xs">
+          <span class="w-2 h-2 rounded-full bg-[#0C6059]"></span>
+          <span class="text-neutral-700">Paciente:</span>
+          <strong id="headerPacienteNombre" class="text-[#0C6059]">Paciente Demo 03</strong>
+        </div>
+      </div>
+    </header>
+
+    <!-- ÁREA DE MÓDULOS CON SCROLL INDEPENDIENTE -->
+    <main class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 bg-[#FAFAFA]">
+      <div class="w-full space-y-6">
+
+        <!-- =============================================================
+             MÓDULO 1: MI TRATAMIENTO ("el tratamiento y lo que le harán")
+             ============================================================= -->
+        <section id="modulo-tratamiento" class="tab-paciente-content space-y-6">
+          
+          <!-- BANNER PRINCIPAL DE TRATAMIENTO ACTIVO -->
+          <div class="bg-gradient-to-r from-[#F4F9F8] via-[#EDF6F4] to-[#FFFFFF] border border-[#0C6059]/40 rounded-2xl p-5 sm:p-6 shadow-xl relative overflow-hidden">
+            <div class="absolute -right-8 -top-8 w-40 h-40 bg-[#0C6059]/10 rounded-full blur-2xl pointer-events-none"></div>
+            
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div class="space-y-1.5">
+                <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-[#0C6059]/20 border border-[#0C6059]/40 text-[#0C6059] text-xs font-semibold">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#0C6059] animate-pulse"></span>
+                  Tratamiento en Curso
+                </div>
+                <h2 id="tratamientoNombrePrincipal" class="text-xl sm:text-2xl font-serif font-bold text-neutral-900 tracking-wide">
+                  Ortodoncia Metálica MBT (Brackets)
+                </h2>
+                <p id="tratamientoFasePrincipal" class="text-xs sm:text-sm text-neutral-700 max-w-2xl">
+                  Fase 2: Alineación, Nivelación & Cierre de Diastemas en arcada superior e inferior.
+                </p>
+              </div>
+
+              <!-- Ficha Doctor Responsable -->
+              <div class="bg-[#FAFAFA]/80 border border-neutral-300/60 rounded-xl p-3 flex items-center gap-3 shrink-0">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#0C6059] to-[#0E6A60] flex items-center justify-center text-white font-extrabold text-sm shadow">
+                  GM
+                </div>
+                <div>
+                  <span class="text-xs font-bold text-neutral-900 block">Dr. Kevin Jhon Lindo Alfaro</span>
+                  <span class="text-[10px] text-neutral-600 block">Ortodoncista & Cirujano Dental</span>
+                  <span class="text-[10px] text-[#0C6059] font-semibold">Carino Dental Studio</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3 TARJETAS RESUMEN: PRÓXIMA CITA, CUOTA DEL MES Y RECAUDO -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            
+            <!-- TARJETA 1: 📅 PRÓXIMA CITA & MES -->
+            <div class="bg-white border border-neutral-200 rounded-2xl p-5 shadow-lg space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider text-neutral-600 flex items-center gap-1.5">
+                  <span>📅</span> Próxima Cita & Mes
+                </span>
+                <span id="badgeCitaEstado" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-500/20 text-[#274E74] border border-blue-500/30">
+                  Programada
+                </span>
+              </div>
+              <div>
+                <p id="proximaCitaFechaGrande" class="text-xl sm:text-2xl font-serif font-bold text-[#0C6059]">
+                  15 de Diciembre 2026
+                </p>
+                <p id="proximaCitaHoraMes" class="text-xs text-neutral-700 mt-0.5">
+                  Mes: <strong id="mesTexto" class="text-neutral-900">Diciembre</strong> &bull; Hora: <strong id="horaTexto" class="text-neutral-900">10:30 AM</strong>
+                </p>
+              </div>
+              <div class="pt-2 border-t border-neutral-200 flex items-center justify-between text-[11px] text-neutral-600">
+                <span>Día de Control Fijo:</span>
+                <strong id="diaControlFijoTexto" class="text-neutral-900">Día 15 de cada mes</strong>
+              </div>
+            </div>
+
+            <!-- TARJETA 2: 💰 PAGO DE ESE MES & ESTADO -->
+            <div class="bg-white border border-neutral-200 rounded-2xl p-5 shadow-lg space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider text-neutral-600 flex items-center gap-1.5">
+                  <span>💰</span> Cuota del Mes
+                </span>
+                <span id="badgeEstadoPago" class="text-[11px] font-extrabold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-[#0C6059] border border-emerald-500/40">
+                  ✓ PAGADO
+                </span>
+              </div>
+              <div>
+                <p id="cuotaMontoGrande" class="text-xl sm:text-2xl font-serif font-bold text-neutral-900">
+                  S/ 120.00
+                </p>
+                <p class="text-xs text-neutral-600 mt-0.5">
+                  Cuota mensual correspondiente a <span id="mesCuotaTexto" class="text-neutral-700">Noviembre / Diciembre</span>
+                </p>
+              </div>
+              <div class="pt-2 border-t border-neutral-200 flex items-center justify-between text-[11px] text-neutral-600">
+                <span>Métodos de Pago:</span>
+                <span class="text-[#0C6059]">Yape, Plin, Tarjeta, Efectivo</span>
+              </div>
+            </div>
+
+            <!-- TARJETA 3: ESTADO GENERAL DE TU SONRISA -->
+            <div class="bg-white border border-neutral-200 rounded-2xl p-5 shadow-lg space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider text-neutral-600 flex items-center gap-1.5">
+                  <span>⭐</span> Progreso Global
+                </span>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#0C6059]/20 text-[#0C6059] border border-[#0C6059]/30">
+                  Fase 2 de 3
+                </span>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs text-neutral-700 mb-1">
+                  <span>Alineación & Cierre</span>
+                  <strong class="text-[#0C6059]">65% Completado</strong>
+                </div>
+                <div class="w-full bg-neutral-100 h-2 rounded-full overflow-hidden">
+                  <div class="bg-gradient-to-r from-[#0C6059] to-[#0E6A60] h-full rounded-full" style="width: 65%;"></div>
+                </div>
+              </div>
+              <div class="pt-2 border-t border-neutral-200 text-[11px] text-neutral-600">
+                <span>Sesiones Asistidas: </span>
+                <strong id="sesionesAsistidasTexto" class="text-neutral-900">4 controles mensuales</strong>
+              </div>
+            </div>
+
+          </div>
+
+                    <!-- RECADO DEL DOCTOR (OBSERVACIONES Y CUIDADOS ESPECIALES) -->
+          <div class="bg-gradient-to-r from-[#F4F9F8] to-[#EDF6F4] border-l-4 border-l-[#0C6059] border-y border-r border-neutral-200 rounded-2xl p-5 sm:p-6 shadow-lg space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-[#0C6059]/20 border border-[#0C6059]/50 flex items-center justify-center text-[#0C6059]">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+              </div>
+              <div>
+                <h4 class="text-sm font-bold text-neutral-900 flex items-center gap-2">
+                  Recado Médico Directo del Dr. Kevin Jhon Lindo Alfaro
+                  <span class="text-[10px] font-normal text-[#0C6059] bg-[#FAFAFA] px-2 py-0.5 rounded border border-[#0C6059]/30">Para tu cuidado en casa</span>
+                </h4>
+                <p class="text-[11px] text-neutral-600">Indicaciones para asegurar el éxito y comodidad de tu tratamiento</p>
+              </div>
+            </div>
+
+            <div class="bg-[#FAFAFA]/90 rounded-xl p-4 border border-neutral-200 text-xs sm:text-sm text-neutral-700 leading-relaxed italic" id="recadoDoctorTexto">
+              "Evitar morder alimentos duros directamente con los incisivos (cortar en trozos pequeños). Aplicar la cera de ortodoncia en el tubo del molar si notas roce. Para cualquier molestia o bracket suelto avísanos de inmediato."
+            </div>
+          </div>
+
+          <!-- ODONTOGRAMA SIMPLIFICADO: ESTADO VISUAL DE TUS PIEZAS DENTALES -->
+          <div class="bg-white border border-neutral-200 rounded-2xl p-5 sm:p-6 shadow-xl space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-neutral-200 pb-3">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-wider text-[#0C6059]">Mapeo Clínico Visual</span>
+                <h3 class="text-base sm:text-lg font-serif font-bold text-neutral-900 flex items-center gap-2 mt-0.5">
+                  <span>🦷</span> Estado Dental de Tu Sonrisa (Odontograma)
+                </h3>
+              </div>
+              <!-- Leyenda Rápida -->
+              <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-[10px] text-neutral-700">
+                <span class="flex items-center gap-1"><span class="odontogram-tooth odontogram-tooth--legend sano" aria-hidden="true"></span>Sano</span>
+                <span class="flex items-center gap-1"><span class="odontogram-tooth odontogram-tooth--legend brackets" aria-hidden="true"></span>Brackets</span>
+                <span class="flex items-center gap-1"><span class="odontogram-tooth odontogram-tooth--legend caries" aria-hidden="true"></span>Caries</span>
+                <span class="flex items-center gap-1"><span class="odontogram-tooth odontogram-tooth--legend restaurado" aria-hidden="true"></span>Restaurado</span>
+                <span class="flex items-center gap-1"><span class="odontogram-tooth odontogram-tooth--legend endodoncia" aria-hidden="true"></span>Endodoncia</span>
+                <span class="flex items-center gap-1"><span class="odontogram-tooth odontogram-tooth--legend ausente" aria-hidden="true"></span>Ausente</span>
+              </div>
+            </div>
+
+            <!-- Grilla visual de dientes: Arcada Superior e Inferior -->
+            <div class="bg-[#FAFAFA] rounded-xl p-2.5 sm:p-4 border border-neutral-200 space-y-4">
+              
+              <!-- Arcada Superior -->
+              <div>
+                <span class="text-[10px] font-bold text-neutral-600 block mb-1">Arcada Superior (Maxilar)</span>
+                <div id="odontogramaArcadaSuperior" class="grid grid-cols-3 min-[360px]:grid-cols-4 md:grid-cols-8 gap-1.5">
+                  <!-- Dientes 18 al 28 inyectados por paciente.js -->
+                </div>
+              </div>
+
+              <!-- Arcada Inferior -->
+              <div>
+                <span class="text-[10px] font-bold text-neutral-600 block mb-1">Arcada Inferior (Mandíbula)</span>
+                <div id="odontogramaArcadaInferior" class="grid grid-cols-3 min-[360px]:grid-cols-4 md:grid-cols-8 gap-1.5">
+                  <!-- Dientes 48 al 38 inyectados por paciente.js -->
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Detalle de pieza seleccionada -->
+            <div id="detallePiezaSeleccionada" class="p-3 bg-[#EAF5F2] rounded-xl border border-[#0C6059]/30 text-xs text-neutral-700 flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <div aria-live="polite">
+                <strong id="detallePiezaNumero" class="text-[#0C6059]">Pieza 16 (Primer Molar Superior):</strong>
+                <span id="detallePiezaTexto" class="ml-1 text-neutral-700">Sano con tubo de ortodoncia activo.</span>
+              </div>
+              <span class="text-[10px] text-neutral-600 italic">Toca cualquier diente para ver su nota clínica</span>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- =============================================================
+             MÓDULO 2: SEGUIMIENTO MENSUAL (SOLO ASISTENCIAS Y PAGOS)
+             ============================================================= -->
+        <section id="modulo-controles" class="tab-paciente-content hidden space-y-6">
+          
+          <!-- SECCIÓN: HISTORIAL DE CONTROLES ASISTIDOS & SEGUIMIENTO (EXACTO A IMAGEN 2) -->
+          <div class="bg-white border border-[#0C6059]/30 rounded-2xl p-5 sm:p-6 shadow-xl space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-neutral-200 pb-3">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-wider text-[#0C6059]">Seguimiento Mensual</span>
+                <h3 class="text-base sm:text-lg font-serif font-bold text-neutral-900 flex items-center gap-2 mt-0.5">
+                  <span>📋</span> Mis Controles Asistidos & Próximos Meses
+                </h3>
+                <p class="text-xs text-neutral-600">Revisa cuántos controles has cumplido a la fecha y genera tu informe médico.</p>
+              </div>
+
+              <!-- BOTÓN PARA GENERAR PDF DEL PACIENTE -->
+              <button type="button" onclick="exportarHistorialPDFPaciente()" class="btn-gold py-2 px-4 rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-md hover:brightness-110 transition shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <span>Descargar Historial en PDF</span>
+              </button>
+            </div>
+
+            <!-- Contador Resumen de Asistencias del Paciente -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-[#FAFAFA] p-3.5 rounded-xl border border-neutral-200 text-xs">
+              <div>
+                <span class="text-neutral-600 text-[10px] block">Controles Cumplidos:</span>
+                <strong id="contadorAsistidosGrande" class="text-[#0C6059] text-base font-bold">1 Asistencia</strong>
+              </div>
+              <div>
+                <span class="text-neutral-600 text-[10px] block">Próximos Meses:</span>
+                <strong id="contadorProgramadosGrande" class="text-[#0C6059] text-base font-bold">0 Controles</strong>
+              </div>
+              <div>
+                <span class="text-neutral-600 text-[10px] block">Progreso del Tratamiento:</span>
+                <strong id="porcentajeAvanceGrande" class="text-[#274E74] text-base font-bold">100%</strong>
+              </div>
+              <div>
+                <span class="text-neutral-600 text-[10px] block">Total Invertido:</span>
+                <strong id="totalInvertidoGrande" class="text-neutral-900 text-base font-bold">S/ 120.00</strong>
+              </div>
+            </div>
+
+            <!-- Tabla de Historial de Controles del Paciente -->
+            <div class="overflow-x-auto rounded-xl border border-neutral-200 bg-[#FAFAFA]">
+              <table class="w-full text-left text-xs text-neutral-700">
+                <thead class="bg-[#EAF5F2] text-[10px] uppercase tracking-wider text-neutral-600 border-b border-neutral-200">
+                  <tr>
+                    <th class="py-2.5 px-3 text-center">N° Control</th>
+                    <th class="py-2.5 px-3">Mes que le tocó</th>
+                    <th class="py-2.5 px-3">Fecha de Cita</th>
+                    <th class="py-2.5 px-3">Procedimiento Realizado</th>
+                    <th class="py-2.5 px-3">Cuánto pagó (S/)</th>
+                    <th class="py-2.5 px-3 text-center">Estado</th>
+                  </tr>
+                </thead>
+                <tbody id="tablaHistorialControlesPacienteBody" class="divide-y divide-neutral-200">
+                  <!-- Inyectado por paciente.js -->
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- =============================================================
+             MÓDULO 3: MI PERFIL (MIS DATOS, CONTRASEÑA E HISTORIAL)
+             ============================================================= -->
+        <section id="modulo-perfil" class="tab-paciente-content hidden space-y-6">
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- COLUMNA IZQUIERDA: DATOS PERSONALES Y CONTRASEÑA -->
+            <div class="lg:col-span-7 space-y-6">
+              
+              <!-- TARJETA: DATOS PERSONALES REGISTRADOS -->
+              <div class="bg-white border border-neutral-200 rounded-2xl p-5 sm:p-6 shadow-xl space-y-4">
+                <div class="border-b border-neutral-200 pb-3 flex items-center justify-between">
+                  <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#0C6059]">Ficha Personal</span>
+                    <h3 class="text-lg font-serif font-bold text-neutral-900 flex items-center gap-2 mt-0.5">
+                      <span>👤</span> Datos Personales
+                    </h3>
+                  </div>
+                  <span class="text-[10px] font-semibold text-[#0C6059] bg-[#0C6059]/10 px-2.5 py-1 rounded-full border border-emerald-500/30">
+                    Cuenta Verificada
+                  </span>
+                </div>
+
+                <form id="formPerfilDatos" class="space-y-3.5">
+                  <div>
+                    <label class="block text-xs font-medium text-neutral-600 mb-1">Nombre Completo</label>
+                    <input type="text" id="perfilNombreInput" class="w-full bg-[#FAFAFA] border border-[#8A8A8A] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#0C6059]">
+                  </div>
+
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label class="block text-xs font-medium text-neutral-600 mb-1">Documento de Identidad (DNI)</label>
+                      <input type="text" id="perfilDniInput" readonly class="w-full bg-[#FAFAFA] border border-neutral-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-neutral-700 cursor-not-allowed">
+                    </div>
+                    <div>
+                      <label class="block text-xs font-medium text-neutral-600 mb-1">Teléfono / WhatsApp</label>
+                      <input type="tel" id="perfilTelefonoInput" class="w-full bg-[#FAFAFA] border border-[#8A8A8A] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#0C6059]">
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-medium text-neutral-600 mb-1">Correo Electrónico de Acceso</label>
+                    <input type="email" id="perfilCorreoInput" readonly class="w-full bg-[#FAFAFA] border border-neutral-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-neutral-700 cursor-not-allowed">
+                  </div>
+
+                  <button type="submit" class="btn-gold py-2.5 px-5 rounded-xl text-xs font-bold uppercase tracking-wider shadow">
+                    Guardar Cambios de Contacto
+                  </button>
+                </form>
+              </div>
+
+              <!-- TARJETA: CREDENCIALES DE ACCESO (CONTRASEÑA CON BOTÓN DE VER) -->
+              <div class="bg-white border border-neutral-200 rounded-2xl p-5 sm:p-6 shadow-xl space-y-4">
+                <div class="border-b border-neutral-200 pb-3">
+                  <span class="text-xs font-bold uppercase tracking-wider text-[#0C6059]">Seguridad de Cuenta</span>
+                  <h3 class="text-lg font-serif font-bold text-neutral-900 flex items-center gap-2 mt-0.5">
+                    <span>🔑</span> Contraseña de Acceso
+                  </h3>
+                  <p class="text-xs text-neutral-600 mt-0.5">Puedes consultar tu clave o crear una nueva para tus siguientes inicios de sesión.</p>
+                </div>
+
+                <div class="space-y-3.5">
+                  <!-- Contraseña Actual (Con botón de ojito) -->
+                  <div>
+                    <label class="block text-xs font-medium text-neutral-600 mb-1">Contraseña Actual Registrada</label>
+                    <div class="relative">
+                      <input type="password" id="perfilPasswordActual" readonly class="w-full bg-[#FAFAFA] border border-[#8A8A8A] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-[#0C6059] font-mono tracking-wider pr-10">
+                      <button type="button" id="btnToggleVerPassword" class="absolute inset-y-0 right-0 pr-3 flex items-center text-neutral-600 hover:text-neutral-900" title="Mostrar/Ocultar contraseña">
+                        <svg id="eyeIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Cambiar Contraseña -->
+                  <div class="pt-2 border-t border-neutral-200">
+                    <label class="block text-xs font-medium text-neutral-600 mb-1">Nueva Contraseña (opcional)</label>
+                    <div class="flex gap-2">
+                      <input type="text" id="perfilNuevaPasswordInput" placeholder="Escribe tu nueva clave" class="flex-1 bg-[#FAFAFA] border border-[#8A8A8A] rounded-xl px-3.5 py-2 text-xs text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#0C6059] placeholder-neutral-600">
+                      <button type="button" id="btnActualizarPassword" class="px-4 py-2 rounded-xl bg-neutral-100 hover:bg-neutral-100 text-xs font-bold text-[#0C6059] border border-neutral-300 transition">
+                        Actualizar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- COLUMNA DERECHA: HISTORIAL DE CITAS Y ZONA DE SESIÓN -->
+            <div class="lg:col-span-5 space-y-6">
+              
+              <!-- TARJETA: HISTORIAL DE CITAS Y ASISTENCIAS -->
+              <div class="bg-white border border-neutral-200 rounded-2xl p-5 sm:p-6 shadow-xl space-y-4">
+                <div class="border-b border-neutral-200 pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#0C6059]">Historial Clínico</span>
+                    <h3 class="text-lg font-serif font-bold text-neutral-900 flex items-center gap-2 mt-0.5">
+                      <span>📋</span> Mis Citas en la Clínica
+                    </h3>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <button type="button" onclick="exportarHistorialPDFPaciente()" class="btn-gold py-1 px-2.5 rounded-lg text-[10px] font-bold flex items-center gap-1 shadow">
+                      <span>📄</span> Descargar PDF
+                    </button>
+                    <span id="totalCitasHistorialBadge" class="text-[10px] font-bold text-[#0C6059] bg-[#EAF5F2] px-2 py-0.5 rounded border border-[#0C6059]/30">
+                      3 Citas
+                    </span>
+                  </div>
+                </div>
+
+                <div id="listaHistorialCitas" class="space-y-3 max-h-[420px] overflow-y-auto pr-1">
+                  <!-- Rellenado por paciente.js -->
+                </div>
+              </div>
+
+              <!-- TARJETA: INFORMACIÓN DE LA CLÍNICA & CERRAR SESIÓN -->
+              <div class="bg-[#EAF5F2] border border-[#0C6059]/30 rounded-2xl p-5 shadow-lg space-y-3">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-lg bg-[#FAFAFA] border border-[#0C6059]/60 flex items-center justify-center">
+                    <svg class="w-4 h-4 text-[#0C6059]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                  </div>
+                  <div>
+                    <h4 class="text-xs font-bold text-neutral-900">Carino Dental Studio</h4>
+                    <p class="text-[10px] text-neutral-600">Atención de alta gama & ortodoncia</p>
+                  </div>
+                </div>
+                <p class="text-[11px] text-neutral-700 leading-relaxed">
+                  ¿Tienes dudas con respecto a tu próxima cita o tu cuota mensual? Puedes consultarnos directamente o visitarnos en nuestros horarios de atención.
+                </p>
+                <div class="pt-2 border-t border-neutral-300/60 flex items-center justify-between">
+                  <span class="text-[10px] text-neutral-600">Sesión iniciada con seguridad</span>
+                  <button id="btnCerrarSesionPerfil" type="button" class="text-xs text-[#9B2626] hover:text-[#9B2626] font-bold hover:underline">
+                    Cerrar Sesión
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ===================================================================
+       MODAL INTEGRADO: AGENDAR CITA DIRECTA DESDE EL PORTAL
+       =================================================================== -->
+  <div id="modalCitaPaciente" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white text-neutral-900 rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-[#0C6059]/60 animate-fade-in relative my-8">
+      
+      <button id="btnCerrarModalCitaPaciente" type="button" class="absolute top-5 right-5 text-neutral-600 hover:text-neutral-900 p-1.5 rounded-full hover:bg-neutral-100 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+
+      <div class="mb-4 pb-3 border-b border-neutral-200 text-center">
+        <h2 class="font-serif font-bold text-xl text-neutral-900">Agendar Cita Extra</h2>
+        <p class="text-xs text-neutral-600 mt-0.5">Reserva una consulta o ajuste adicional con el Dr. Kevin Jhon Lindo Alfaro</p>
+      </div>
+
+      <form id="formCitaModalPaciente" class="space-y-3.5">
+        <div>
+          <label class="block text-xs font-bold text-neutral-700 mb-1">Fecha deseada</label>
+          <input type="date" id="modalFechaInputPaciente" required class="w-full bg-[#FAFAFA] border border-[#8A8A8A] rounded-xl px-3.5 py-2.5 text-xs text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#0C6059]">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-neutral-700 mb-1">Horarios Disponibles</label>
+          <div id="modalSlotsContainerPaciente" class="grid grid-cols-3 sm:grid-cols-4 gap-2 max-h-36 overflow-y-auto p-1 bg-[#FAFAFA] rounded-xl border border-neutral-200">
+            <!-- Inyectado por paciente.js -->
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-neutral-700 mb-1">Motivo o duda (opcional)</label>
+          <textarea id="modalMotivoInputPaciente" rows="2" placeholder="Ej. Bracket despegado, consulta estética, molestia..." class="w-full bg-[#FAFAFA] border border-[#8A8A8A] rounded-xl px-3.5 py-2 text-xs text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#0C6059] placeholder-neutral-600"></textarea>
+        </div>
+
+        <button type="submit" id="btnConfirmarCitaPaciente" class="btn-gold w-full py-3 text-xs font-bold uppercase tracking-wider rounded-xl shadow-md">
+          Confirmar Reserva
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/api.js"></script>
+  <script src="js/paciente.js"></script>
+  <script src="js/chat.js"></script>
+</body>
+</html>

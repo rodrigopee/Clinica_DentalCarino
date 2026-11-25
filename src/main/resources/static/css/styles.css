@@ -1,0 +1,674 @@
+/* =====================================================================
+   CARINO DENTAL STUDIO - PALETA CLÍNICA
+   Blanco, negro y verde petróleo.
+   ===================================================================== */
+
+:root {
+  /* --- Superficies --- */
+  --bg-primary: #FAFAFA;         /* Fondo general */
+  --bg-surface: #FFFFFF;         /* Blanco puro inmaculado */
+  --bg-card: #FFFFFF;            /* Tarjetas blanco puro */
+  --bg-card-hover: #F6FAF9;      /* Fondo de tarjeta al pasar el cursor */
+  --bg-muted: #F4F4F4;           /* Gris clínico suave */
+  --bg-dark-occupied: #262626;   /* Sombreado grafito oscuro para horarios ocupados */
+
+  /* --- Acento verde petróleo --- */
+  --gold-primary: #0C6059;       /* Acento principal */
+  --gold-light: #0E6A60;         /* Acento secundario */
+  --gold-bright: #90DDCF;        /* Acento claro */
+  --gold-dark: #084D47;          /* Acento para texto */
+  --gold-subtle: #EAF5F2;        /* Fondo tintado */
+  --gold-subtle-hover: #DCEFEA;  /* Fondo tintado al pasar el cursor */
+  --gold-border: rgba(12, 96, 89, 0.4);
+  --gold-border-subtle: rgba(12, 96, 89, 0.22);
+  --gold-border-glow: rgba(12, 96, 89, 0.7);
+
+  --gold-gradient: linear-gradient(135deg, #0E6A60 0%, #0C6059 55%, #084D47 100%);
+  --gold-gradient-hover: linear-gradient(135deg, #0C6059 0%, #08534C 55%, #084943 100%);
+  --gold-shadow: 0 4px 16px rgba(12, 96, 89, 0.28);
+  --gold-shadow-lg: 0 8px 26px rgba(12, 96, 89, 0.38);
+
+  /* --- Textos de Máxima Legibilidad & Contraste --- */
+  --text-primary: #171717;       /* Texto principal */
+  --text-secondary: #525252;     /* Gris neutro corporativo */
+  --text-muted: #595959;         /* Gris medio para metadatos */
+  --text-on-dark: #FAFAFA;       /* Texto claro en fondos oscuros / slots ocupados */
+
+  /* --- Bordes y Radios --- */
+  --border-light: #E5E5E5;
+  --border-subtle: #F4F4F4;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* --- Sombras Suaves de Elevación Limpia --- */
+  --shadow-sm: 0 2px 8px rgba(23, 23, 23, 0.04);
+  --shadow-md: 0 8px 24px rgba(23, 23, 23, 0.06);
+  --shadow-lg: 0 16px 36px rgba(23, 23, 23, 0.09);
+  --shadow-gold: 0 4px 20px rgba(12, 96, 89, 0.2);
+
+  /* --- Curvas de Movimiento Natural --- */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* --- Tipografías --- */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =====================================================================
+   KEYFRAMES DE ANIMACIONES FLUIDAS
+   ===================================================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleUpIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes pulseGlowGold {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(12, 96, 89, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(12, 96, 89, 0.55);
+  }
+}
+
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes toothPop {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s var(--ease-spring) forwards;
+}
+
+.animate-scale-in {
+  animation: scaleUpIn 0.22s var(--ease-spring) forwards;
+}
+
+.animate-float {
+  animation: floatGentle 3s ease-in-out infinite;
+}
+
+/* =====================================================================
+   TIPOGRAFÍA Y DECORACIÓN DE TEXTO
+   ===================================================================== */
+h1, h2, h3, .font-luxury {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.gold-gradient-text {
+  color: #0C6059;
+  display: inline-block;
+  font-weight: 700;
+}
+
+/* =====================================================================
+   BOTONES
+   ===================================================================== */
+.btn-gold {
+  background: var(--gold-gradient);
+  color: #FFFFFF !important;
+  border: none;
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 10px 22px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--gold-shadow);
+  cursor: pointer;
+  transition: all 0.22s var(--ease-spring);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  position: relative;
+}
+
+.btn-gold:hover {
+  background: var(--gold-gradient-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--gold-shadow-lg);
+  color: #FFFFFF !important;
+}
+
+.btn-gold:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-outline-gold {
+  background: #FFFFFF;
+  color: var(--gold-dark);
+  border: 1.5px solid var(--gold-primary);
+  font-weight: 600;
+  padding: 9px 18px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s var(--ease-spring);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-outline-gold:hover {
+  background: var(--gold-subtle);
+  border-color: var(--gold-dark);
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 14px rgba(12, 96, 89, 0.2);
+}
+
+.btn-outline-gold:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* =====================================================================
+   BADGES Y ETIQUETAS DE ESTADO
+   ===================================================================== */
+.badge-gold {
+  background: var(--gold-subtle);
+  color: var(--gold-dark);
+  border: 1px solid var(--gold-border);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.badge-occupied {
+  background: #262626;
+  color: #D4D4D4;
+  border: 1px solid #404040;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+
+/* Estados de Citas */
+.status-pill {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.status-pill.PENDIENTE {
+  background: #FEF3C7;
+  color: #79450B;
+  border: 1px solid #FDE68A;
+}
+
+.status-pill.CONFIRMADA {
+  background: #E9F1F9;
+  color: #274E74;
+  border: 1px solid #C7D9EB;
+}
+
+.status-pill.ATENDIDA {
+  background: #D1FAE5;
+  color: #065F46;
+  border: 1px solid #A7F3D0;
+}
+
+.status-pill.CANCELADA {
+  background: #FEE2E2;
+  color: #991B1B;
+  border: 1px solid #FECACA;
+}
+
+/* Botones de estado de 1-clic */
+.btn-status-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border-width: 1.5px;
+  cursor: pointer;
+  transition: all 0.18s var(--ease-spring);
+  white-space: nowrap;
+}
+
+.btn-status-badge:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-status-badge:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* =====================================================================
+   TARJETAS Y PANELES
+   ===================================================================== */
+.luxury-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.22s var(--ease-spring), box-shadow 0.22s var(--ease-spring), border-color 0.22s ease;
+}
+
+.luxury-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md), 0 0 14px rgba(12, 96, 89, 0.15);
+  border-color: var(--gold-border);
+}
+
+/* Paneles del Portal Clínico */
+.dark-panel {
+  background-color: #FFFFFF !important;
+  border: 1px solid var(--border-light) !important;
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dark-panel:hover {
+  border-color: var(--gold-border) !important;
+  box-shadow: var(--shadow-md);
+}
+
+.dark-panel-card {
+  background-color: #FFFFFF !important;
+  border: 1px solid var(--border-light) !important;
+  border-radius: 14px;
+  transition: all 0.2s var(--ease-spring);
+  box-shadow: 0 1px 4px rgba(23, 23, 23, 0.04);
+}
+
+.dark-panel-card:hover {
+  background-color: #F6FAF9 !important;
+  border-color: var(--gold-border) !important;
+  box-shadow: var(--shadow-md), 0 0 12px rgba(12, 96, 89, 0.1);
+  transform: translateY(-1.5px);
+}
+
+/* KPI Card */
+.kpi-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.22s var(--ease-spring);
+  box-shadow: var(--shadow-sm);
+}
+
+.kpi-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gold-gradient);
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--gold-border);
+}
+
+.kpi-value {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+  margin: 8px 0;
+}
+
+/* =====================================================================
+   HORARIOS DISPONIBLES VS OCUPADOS
+   Horarios ocupados: sombreados en grafito mate (#262626), deshabilitados.
+   Horarios disponibles: fondo blanco, borde visible, interactivos.
+   ===================================================================== */
+.slots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
+  gap: 12px;
+}
+
+.slot-btn {
+  padding: 12px 8px;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.2s var(--ease-spring);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  position: relative;
+  outline: none;
+}
+
+/* Horario Disponible */
+.slot-btn.disponible {
+  background: #FFFFFF;
+  border: 1.5px solid #8A8A8A;
+  color: var(--text-primary);
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(23, 23, 23, 0.04);
+}
+
+.slot-btn.disponible:hover {
+  border-color: var(--gold-primary);
+  background: var(--gold-subtle);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(12, 96, 89, 0.25);
+}
+
+.slot-btn.disponible:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.slot-btn.disponible.selected {
+  background: var(--gold-gradient) !important;
+  border-color: var(--gold-dark) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 6px 18px rgba(12, 96, 89, 0.4) !important;
+  transform: scale(1.04);
+}
+
+.slot-btn.disponible.selected .slot-status-text {
+  color: #FFFFFF !important;
+  font-weight: 800;
+}
+
+.slot-btn.disponible:focus-visible {
+  outline: 2px solid var(--gold-dark);
+  outline-offset: 2px;
+}
+
+/* Horario Ocupado: Marcado en sombreado oscuro mate */
+.slot-btn.ocupado {
+  background: var(--bg-dark-occupied);
+  border: 1px solid #404040;
+  color: #D4D4D4;
+  cursor: not-allowed;
+  opacity: 0.9;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.slot-btn.ocupado:hover {
+  background: #404040;
+}
+
+.slot-time {
+  font-size: 0.92rem;
+  letter-spacing: -0.01em;
+}
+
+.slot-status-text {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.slot-btn.disponible .slot-status-text {
+  color: var(--gold-dark);
+}
+
+.slot-btn.ocupado .slot-status-text {
+  color: #E5E5E5;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+}
+
+/* =====================================================================
+   ODONTOGRAMA: PIEZAS DENTALES LIMPIAS Y LUMINOSAS
+   ===================================================================== */
+.odontograma-preview {
+  background: linear-gradient(180deg, #FFFFFF 0%, var(--gold-subtle) 100%);
+  border: 2px dashed var(--gold-primary);
+  border-radius: var(--radius-lg);
+  padding: 40px 24px;
+  text-align: center;
+  position: relative;
+}
+
+.tooth-box {
+  width: 44px;
+  height: 54px;
+  border: 1.5px solid var(--gold-border);
+  border-radius: 8px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gold-dark);
+  margin: 3px;
+  box-shadow: 0 2px 4px rgba(23, 23, 23, 0.04);
+  transition: all 0.2s var(--ease-spring);
+}
+
+.tooth-card {
+  width: 52px;
+  height: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 3px;
+  border-radius: 10px;
+  border: 1.5px solid #8A8A8A;
+  background: #FFFFFF;
+  color: #171717;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-spring);
+  user-select: none;
+  box-shadow: 0 2px 6px rgba(23, 23, 23, 0.05);
+}
+
+.tooth-card:hover {
+  transform: translateY(-3px) scale(1.08);
+  border-color: #0C6059;
+  box-shadow: 0 6px 16px rgba(12, 96, 89, 0.3);
+  z-index: 10;
+}
+
+.tooth-card:active {
+  animation: toothPop 0.25s var(--ease-spring);
+}
+
+.tooth-card.sano {
+  border-color: #0D7567;
+  background: #ECFDF5;
+  color: #065F46;
+}
+
+.tooth-card.caries {
+  border-color: #EF4444;
+  background: #FEF2F2;
+  color: #991B1B;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+}
+
+.tooth-card.restaurado {
+  border-color: #35618A;
+  background: #EFF6FF;
+  color: #1E40AF;
+}
+
+.tooth-card.endodoncia {
+  border-color: #F59E0B;
+  background: #FFFBEB;
+  color: #92400E;
+}
+
+.tooth-card.ausente {
+  border-color: #D4D4D4;
+  background: #F4F4F4;
+  color: #171717;
+  opacity: 0.65;
+}
+
+.tooth-card.ausente span {
+  color: var(--text-primary);
+}
+
+/* =====================================================================
+   NAVEGACIÓN LATERAL & ITEMS
+   ===================================================================== */
+.nav-item {
+  transition: all 0.18s var(--ease-spring);
+}
+
+.nav-item:hover {
+  background-color: #FAFAFA;
+  transform: translateX(3px);
+}
+
+.nav-item-active {
+  background: linear-gradient(90deg, rgba(12, 96, 89, 0.16) 0%, rgba(12, 96, 89, 0.04) 100%) !important;
+  border-left: 3px solid #0C6059 !important;
+  color: #084D47 !important;
+  font-weight: 700 !important;
+  box-shadow: inset 3px 0 8px rgba(12, 96, 89, 0.1);
+}
+
+/* Filas de tablas interactivas */
+tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+tbody tr:hover {
+  background-color: rgba(12, 96, 89, 0.05);
+}
+
+/* Inputs y Selects */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #0C6059 !important;
+  box-shadow: 0 0 0 3px rgba(12, 96, 89, 0.2) !important;
+}
+
+/* Scrollbar Clean */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F4F4F4;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4D4D4;
+  border-radius: 9999px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0C6059;
+}
+
+/* Selección de texto */
+::selection {
+  background-color: #0C6059;
+  color: #FFFFFF;
+}
+
+/* =====================================================================
+   WIDGET DE CHAT FLOTANTE (CON EL DIENTE DENTAL BONITO)
+   ===================================================================== */
+#carinoChatFloatingContainer button#btnCarinoChatToggle,
+#carinoChatAdminFloatingContainer button#btnCarinoChatToggleAdmin {
+  transition: all 0.25s var(--ease-spring);
+  box-shadow: 0 10px 28px rgba(23, 23, 23, 0.16), 0 0 0 2px #FFFFFF;
+  background-color: #FFFFFF !important;
+}
+
+#carinoChatFloatingContainer button#btnCarinoChatToggle:hover,
+#carinoChatAdminFloatingContainer button#btnCarinoChatToggleAdmin:hover {
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 18px 36px rgba(23, 23, 23, 0.22), 0 0 18px rgba(12, 96, 89, 0.35);
+}
+
+#carinoChatFloatingContainer button#btnCarinoChatToggle:active,
+#carinoChatAdminFloatingContainer button#btnCarinoChatToggleAdmin:active {
+  transform: scale(0.95) translateY(0);
+}
+
+#carinoChatWindow, #carinoChatWindowAdmin {
+  animation: scaleUpIn 0.25s var(--ease-spring) forwards;
+  box-shadow: 0 25px 60px rgba(23, 23, 23, 0.35), 0 0 0 1.5px rgba(255, 255, 255, 0.6);
+}
+
+.btn-pregunta-rapida {
+  transition: all 0.2s var(--ease-spring);
+}
+
+.btn-pregunta-rapida:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 768px) {
+  .slots-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

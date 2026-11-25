@@ -1,0 +1,16 @@
+target/
+node_modules/
+.vscode/
+.idea/
+*.iml
+.env
+.env.*
+!.env.example
+application-local.properties
+application-*-local.properties
+*.db
+*.mv.db
+*.log
+*.pem
+*.pfx
+*.key

@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carino Dental Studio | Portal Clínico & Administración</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="img/favicon-carino-logo.png">
+
+  <!-- Tipografías de Prestigio -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Hoja de Estilos Personalizada -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/odontograma.css">
+
+  
+  <style>
+    /* Estilos Swiss Medical Luxury (Blanco Perla & Oro Champán) */
+    body {
+      background-color: #FAFAFA !important;
+      color: #171717 !important;
+      font-family: 'Inter', sans-serif;
+    }
+    .gold-gradient-text {
+      color: #0C6059;
+      font-weight: 700;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, #0E6A60 0%, #0C6059 55%, #084D47 100%) !important;
+      color: #FFFFFF !important;
+      font-weight: 700;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+    .btn-gold:hover {
+      background: linear-gradient(135deg, #0C6059 0%, #08534C 55%, #084943 100%) !important;
+      box-shadow: 0 6px 20px rgba(12, 96, 89, 0.38) !important;
+      transform: translateY(-1.5px);
+    }
+    .btn-gold:active {
+      transform: translateY(0) scale(0.98);
+    }
+    /* Scrollbar personalizada Clean */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F4F4;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D4D4D4;
+      border-radius: 9999px;
+      transition: background 0.2s ease;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0C6059;
+    }
+    .nav-item {
+      color: #525252 !important;
+    }
+    .nav-item:hover {
+      background-color: #F4F4F4 !important;
+      color: #171717 !important;
+    }
+    .nav-item-active {
+      background: linear-gradient(90deg, rgba(12, 96, 89, 0.16) 0%, rgba(12, 96, 89, 0.04) 100%) !important;
+      border-left: 3px solid #0C6059 !important;
+      color: #084D47 !important;
+      font-weight: 700 !important;
+      box-shadow: inset 3px 0 8px rgba(12, 96, 89, 0.1);
+    }
+    .nav-item-active span {
+      color: #084D47 !important;
+    }
+    .btn-status-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 9px;
+      border-radius: 8px;
+      border-width: 1.5px;
+      cursor: pointer;
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+    }
+    .btn-status-badge:hover {
+      transform: translateY(-1.5px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+    .btn-status-badge:active {
+      transform: translateY(0) scale(0.97);
+    }
+
+    /* Paneles y Tarjetas en Blanco Puro */
+    .dark-panel {
+      background-color: #FFFFFF !important;
+      border: 1px solid #E5E5E5 !important;
+      color: #171717 !important;
+      box-shadow: 0 1px 4px rgba(23, 23, 23, 0.05) !important;
+    }
+    .dark-panel input, .dark-panel select, .dark-panel textarea {
+      background-color: #FAFAFA !important;
+      color: #171717 !important;
+      border-color: #8A8A8A !important;
+    }
+    .dark-panel input:focus, .dark-panel select:focus, .dark-panel textarea:focus {
+      background-color: #FFFFFF !important;
+      border-color: #0C6059 !important;
+      box-shadow: 0 0 0 3px rgba(12, 96, 89, 0.2) !important;
+    }
+    .dark-panel input::placeholder, .dark-panel textarea::placeholder {
+      color: #595959 !important;
+    }
+    .dark-panel thead tr {
+      background-color: #FAFAFA !important;
+      color: #525252 !important;
+      border-bottom: 1px solid #E5E5E5 !important;
+    }
+    .dark-panel thead tr th {
+      color: #525252 !important;
+    }
+    .dark-panel tbody tr {
+      background-color: #FFFFFF !important;
+      color: #171717 !important;
+      border-bottom: 1px solid #F4F4F4 !important;
+    }
+    .dark-panel tbody tr:hover {
+      background-color: #EAF5F2 !important;
+    }
+    .dark-panel tbody tr td {
+      color: #171717 !important;
+    }
+    .dark-panel-card {
+      background-color: #FFFFFF !important;
+      border: 1px solid #E5E5E5 !important;
+      color: #171717 !important;
+      box-shadow: 0 1px 3px rgba(23, 23, 23, 0.04) !important;
+    }
+    .dark-panel-card:hover {
+      background-color: #F6FAF9 !important;
+      border-color: #0C6059 !important;
+    }
+    .dark-panel-card input, .dark-panel-card select, .dark-panel-card textarea {
+      background-color: #FAFAFA !important;
+      color: #171717 !important;
+      border-color: #8A8A8A !important;
+    }
+    .dark-panel-card input:focus, .dark-panel-card select:focus, .dark-panel-card textarea:focus {
+      background-color: #FFFFFF !important;
+      border-color: #0C6059 !important;
+    }
+
+    /* Odontograma piezas dentales */
+    .tooth-card {
+      background-color: #FFFFFF;
+      color: #171717;
+      border: 1.5px solid #8A8A8A;
+    }
+    .tooth-card:hover {
+      border-color: #0C6059 !important;
+      box-shadow: 0 4px 12px rgba(12, 96, 89, 0.3) !important;
+    }
+
+    #modulo-odontograma .tooth-card { height: 92px; }
+    #modulo-odontograma .odontogram-status { color: inherit; }
+
+    #topbarNotifBadge { animation-name: pulse-notification-color; }
+    #badgeChatAdminCount { animation-name: pulse-chat-count-color; }
+    @keyframes pulse-chat-count-color { 50% { background-color: #084D47; } }
+    @keyframes pulse-notification-color { 50% { background-color: #9B2626; } }
+  </style>
+</head>
+<body class="h-full flex overflow-hidden antialiased bg-[#FAFAFA] text-[#171717]">
+
+  <!-- ===================================================================
+       BARRA LATERAL IZQUIERDA (SIDEBAR DARK LUXURY)
+       Responsive: fija en móviles/tablets (drawer) y estática en pantallas grandes
+       =================================================================== -->
+  <aside id="sidebarPortal" class="w-64 sm:w-72 bg-white border-r border-neutral-200 flex flex-col justify-between shrink-0 fixed inset-y-0 left-0 z-50 lg:static transition-transform duration-300 -translate-x-full lg:translate-x-0 shadow-2xl lg:shadow-none">
+    
+    <!-- Parte Superior: Marca, Perfil Activo & Selector de Roles -->
+    <div class="p-4 sm:p-5 flex flex-col space-y-4">
+      
+      <!-- Marca Fina Carino Dental Studio con Pulso En Vivo -->
+      <div class="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center pb-3 border-b border-neutral-200">
+        <a href="index.html" class="relative col-start-2 inline-flex items-center rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0C6059]">
+          <img src="img/logo-carino-encabezado.png" alt="Carino Dental Studio" width="361" height="162" class="block h-auto w-24 sm:w-28">
+          <span class="absolute left-full top-1/2 ml-2.5 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-[#0C6059] animate-pulse" title="Sistema en tiempo real activo"></span>
+        </a>
+
+        <!-- Botón cerrar menú en móviles -->
+        <button id="btnCerrarSidebarMobile" class="col-start-3 justify-self-end lg:hidden text-neutral-600 hover:text-neutral-900 p-1.5 rounded-lg bg-neutral-100">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Tarjeta de Usuario Activo en la Barra Izquierda -->
+      <div class="p-3 rounded-xl bg-[#EAF5F2] border border-[#0C6059]/30 flex items-center gap-3 shadow-xs">
+        <div id="sidebarUserAvatar" class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#0C6059] to-[#0E6A60] text-white font-extrabold flex items-center justify-center text-sm shadow-md shrink-0">
+          GM
+        </div>
+        <div class="overflow-hidden flex-1">
+          <div class="flex items-center gap-1.5">
+            <span id="sidebarUserName" class="text-xs font-bold text-[#171717] truncate block">Dr. Kevin Jhon Lindo Alfaro</span>
+            <span id="sidebarRolePill" class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[#0C6059]/20 text-[#0C6059] border border-[#0C6059]/40 shrink-0">ADMIN</span>
+          </div>
+          <p id="sidebarUserEmail" class="text-[10px] text-neutral-600 truncate">admin@clinica.example</p>
+        </div>
+      </div>
+
+      <!-- CONMUTADOR RÁPIDO DE ROLES OFICIALES (ADMIN VS AYUDANTE) -->
+      <div class="p-2.5 rounded-xl bg-neutral-100 border border-neutral-200 space-y-1.5">
+        <div class="flex items-center justify-between text-[10px] text-neutral-600 font-semibold px-1">
+          <span>Cambiar Sesión:</span>
+          <span id="roleModuleCountBadge" class="text-[#0C6059]">7 Módulos</span>
+        </div>
+        <div class="grid grid-cols-2 gap-1.5">
+          <button id="btnSwitchAdmin" type="button" class="py-1.5 px-2 text-[11px] font-bold rounded-lg bg-[#0C6059] text-white shadow-sm flex items-center justify-center gap-1 transition" title="admin@clinica.example / demo-odontologo">
+            <span>👨‍⚕️</span> Admin (7)
+          </button>
+          <button id="btnSwitchAyudante" type="button" class="py-1.5 px-2 text-[11px] font-semibold rounded-lg bg-white text-neutral-700 hover:text-[#171717] hover:bg-neutral-50 shadow-xs border border-neutral-200 flex items-center justify-center gap-1 transition" title="asistente@clinica.example / demo-asistente">
+            <span>👩‍💼</span> Ayudante (4)
+          </button>
+        </div>
+        <div class="text-[9px] text-neutral-600 text-center pt-0.5">
+          <span id="credentialsNote">Admin: admin@clinica.example</span>
+        </div>
+      </div>
+
+      <!-- NAVEGACIÓN DE MÓDULOS EN LA BARRA IZQUIERDA -->
+      <nav class="space-y-1 pt-1 overflow-y-auto max-h-[calc(100vh-380px)]">
+        <div class="text-[10px] font-bold tracking-wider uppercase text-neutral-600 px-3 py-1">
+          Módulos del Sistema
+        </div>
+
+        <!-- Módulo 1: Citas & Reservas (Admin & Ayudante) -->
+        <button id="navItemCitas" type="button" onclick="switchModule('modulo-citas')" class="nav-item nav-item-active w-full text-left px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-between transition hover:bg-neutral-100" data-target="modulo-citas">
+          <div class="flex items-center gap-2.5">
+            <span class="text-base">📅</span>
+            <div>
+              <span class="block text-neutral-900 font-medium">1. Citas & Reservas</span>
+              <span class="block text-[10px] text-neutral-600">Evaluación y 3 estados</span>
+            </div>
+          </div>
+          <span id="sidebarCitasCount" class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-[#0C6059]/20 text-[#0C6059] border border-[#0C6059]/30">3</span>
+        </button>
+
+        <!-- Módulo 2: Empleados / Clientes de Control Mensual Brackets (Solo Admin) -->
+        <button id="navItemBrackets" type="button" onclick="switchModule('modulo-brackets')" class="nav-item w-full text-left px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-between text-neutral-600 hover:text-neutral-900 transition hover:bg-neutral-100" data-target="modulo-brackets">
+          <div class="flex items-center gap-2.5">
+            <span class="text-base">👥</span>
+            <div>
+              <span class="block text-neutral-900 font-medium">2. Clientes Brackets</span>
+              <span class="block text-[10px] text-neutral-600">Cuentas y contraseñas</span>
+            </div>
+          </div>
+          <span class="text-[9px] px-1 py-0.5 rounded bg-emerald-500/10 text-[#0C6059] font-bold border border-emerald-500/20">Control</span>
+        </button>
+
+        <!-- Módulo 3: Seguimiento Clínico (Admin & Ayudante - Por Lista de Controles) -->
+        <button id="navItemSeguimiento" type="button" onclick="switchModule('modulo-seguimiento')" class="nav-item w-full text-left px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-between text-neutral-600 hover:text-neutral-900 transition hover:bg-neutral-100" data-target="modulo-seguimiento">
+          <div class="flex items-center gap-2.5">
+            <span class="text-base">📋</span>
+            <div>
+              <span class="block text-neutral-900 font-medium">3. Seguimiento</span>
+              <span class="block text-[10px] text-neutral-600">Lista, mes, cuota y confirmación</span>
+            </div>
+          </div>
+          <span id="badgeSeguimientoMode" class="text-[9px] px-1.5 py-0.5 rounded bg-blue-500/10 text-[#274E74] font-semibold border border-blue-500/20">Lista</span>
+        </button>
+
+        <!-- Módulo 4: Odontograma Completo (Solo Admin) -->
+        <button id="navItemOdontograma" type="button" onclick="switchModule('modulo-odontograma')" class="nav-item w-full text-left px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-between text-neutral-600 hover:text-neutral-900 transition hover:bg-neutral-100" data-target="modulo-odontograma">
+          <div class="flex items-center gap-2.5">
+            <span class="text-base">🦷</span>
+            <div>
+              <span class="block text-neutral-900 font-medium">4. Odontograma</span>
+              <span class="block text-[10px] text-neutral-600">32 Piezas & vinculación</span>
+            </div>
+          </div>
+          <span class="text-[9px] px-1 py-0.5 rounded bg-amber-500/10 text-[#79450B] font-bold border border-amber-500/20">32 Dientes</span>
+        </button>
+
+        <!-- Módulo 5: Reportes & Finanzas del Mes (Solo Admin) -->
+        <button id="navItemReportes" type="button" onclick="switchModule('modulo-reportes')" class="nav-item w-full text-left px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-between text-neutral-600 hover:text-neutral-900 transition hover:bg-neutral-100" data-target="modulo-reportes">
+          <div class="flex items-center gap-2.5">
+            <span class="text-base">📊</span>
+            <div>
+              <span class="block text-neutral-900 font-medium">5. Reportes & Dinero</span>
+              <span class="block text-[10px] text-neutral-600">Círculo de cliente top</span>
+            </div>
+          </div>
+          <span class="text-[9px] px-1 py-0.5 rounded bg-purple-500/10 text-[#5C4379] font-bold border border-purple-500/20">KPIs</span>
+        </button>
+
+        <!-- Módulo 6: Historial Clínico & Descargas (Admin & Ayudante: PDF, Word & Excel) -->
+        <button id="navItemHistorial" type="button" onclick="switchModule('modulo-historial')" class="nav-item w-full text-left px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-between text-neutral-600 hover:text-neutral-900 transition hover:bg-neutral-100" data-target="modulo-historial">
+          <div class="flex items-center gap-2.5">
+            <span class="text-base">📁</span>
+            <div>
+              <span class="block text-neutral-900 font-medium"><span id="sidebarNavHistorialText">6. Historial Clínico</span></span>
+              <span class="block text-[10px] text-neutral-600">PDF, Word & Excel</span>
+            </div>
+          </div>
+          <span class="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-[#0C6059] font-bold border border-emerald-500/20">Descargas</span>
+        </button>
+
+        <!-- Módulo 7: Mi Perfil (Admin: Dr. Kevin Jhon Lindo Alfaro | Ayudante: Sofía Ramírez) -->
+        <button id="navItemPerfil" type="button" onclick="switchModule('modulo-perfil')" class="nav-item w-full text-left px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-between text-neutral-600 hover:text-neutral-900 transition hover:bg-neutral-100" data-target="modulo-perfil">
+          <div class="flex items-center gap-2.5">
+            <span class="text-base">👤</span>
+            <div>
+              <span class="block text-neutral-900 font-medium"><span id="sidebarNavPerfilText">7. Mi Perfil</span></span>
+              <span class="block text-[10px] text-neutral-600">Información & credenciales</span>
+            </div>
+          </div>
+          <span class="text-[9px] px-1.5 py-0.5 rounded bg-neutral-100 text-neutral-700">Datos</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Parte Inferior de la Barra Izquierda: Enlaces Rápidos & Salir -->
+    <div class="p-4 border-t border-neutral-200 bg-neutral-50 space-y-2">
+      <!-- Enlace a la Web Principal y Portal Paciente -->
+      <a href="paciente.html" target="_blank" class="w-full py-1.5 px-3 rounded-xl bg-[#EAF5F2] hover:bg-[#DCEFEA] text-[#0C6059] text-xs font-semibold transition flex items-center justify-between border border-[#0C6059]/30">
+        <div class="flex items-center gap-2">
+          <span>🦷</span>
+          <span>Ver Portal Paciente (2 Mód.)</span>
+        </div>
+        <span class="text-[9px] bg-emerald-500/20 text-[#0C6059] px-1.5 py-0.2 rounded font-bold">Ver</span>
+      </a>
+
+      <a href="index.html" class="w-full py-1.5 px-3 rounded-xl bg-white hover:bg-neutral-100 text-neutral-700 border border-neutral-200 text-xs font-medium transition flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+        </svg>
+        <span>Ver Web Principal</span>
+      </a>
+
+      <!-- Cerrar Sesión -->
+      <a href="index.html" class="w-full py-1.5 px-3 rounded-xl hover:bg-[#B33434]/10 text-neutral-600 hover:text-[#9B2626] text-[11px] font-medium transition flex items-center justify-center gap-1.5">
+        <span>🚪</span> Cerrar Sesión
+      </a>
+    </div>
+  </aside>
+
+  <!-- ===================================================================
+       CONTENIDO CENTRAL (ÁREA PRINCIPAL COMPLETA SIN ESPACIOS SOBRANTES)
+       w-full para ocupar todo el ancho en pantallas grandes y móviles
+       =================================================================== -->
+  <div class="flex-1 flex flex-col min-w-0 overflow-y-auto w-full">
+    
+    <!-- Barra Superior del Contenido: Menú Móvil, Breadcrumb, Fecha & Búsqueda -->
+    <header class="bg-white/95 border-b border-neutral-200 px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4 sticky top-0 z-30 shadow-xs backdrop-blur-md w-full">
+      <div class="flex items-center gap-3">
+        <!-- Botón Menú Móvil / Tablet -->
+        <button id="btnAbrirSidebarMobile" type="button" class="lg:hidden text-neutral-700 hover:text-neutral-900 p-2 rounded-lg bg-neutral-100 border border-neutral-300">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+        <div>
+          <h1 id="topbarModuleTitle" class="text-sm sm:text-base font-bold text-[#171717] flex items-center gap-2">
+            <span>📅</span> Módulo 1: Citas & Reservas de Pacientes
+          </h1>
+          <p id="topbarModuleSubtitle" class="text-[11px] text-neutral-600 hidden sm:block">
+            Gestión en tiempo real con 3 botones de estado: Pendiente, Confirmado y Atendido.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- CAMPANA DE NOTIFICACIONES ARRIBA AL COSTADO DE LA FECHA -->
+        <div class="relative">
+          <button id="btnNotificacionesTopbar" type="button" class="relative p-2 px-2.5 rounded-xl bg-[#EAF5F2] hover:bg-[#DCEFEA] border border-[#0C6059]/40 text-[#0C6059] transition flex items-center gap-1.5 shadow-sm" title="Avisos de Pacientes y Notificaciones en Vivo">
+            <svg class="w-4 h-4 text-[#0C6059]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+            </svg>
+            <span class="text-xs font-bold text-neutral-900 hidden sm:inline">Avisos</span>
+            <span id="topbarNotifBadge" class="bg-[#B33434] text-white font-extrabold text-[10px] w-5 h-5 rounded-full flex items-center justify-center animate-pulse">2</span>
+          </button>
+
+          <!-- Dropdown Flotante de Notificaciones Topbar -->
+          <div id="dropdownNotificacionesTopbar" class="hidden absolute right-0 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-neutral-200 z-50 p-3.5 backdrop-blur-md text-[#171717]">
+            <div class="flex items-center justify-between pb-2 border-b border-neutral-200">
+              <div class="flex items-center gap-1.5">
+                <span class="text-xs font-bold text-neutral-900">Notificaciones en Vivo</span>
+                <span class="w-2 h-2 rounded-full bg-[#0C6059] animate-ping"></span>
+              </div>
+              <button id="btnLimpiarNotifsTopbar" type="button" class="text-[10px] text-neutral-600 hover:text-[#0C6059] font-semibold">Limpiar</button>
+            </div>
+            <div id="listaNotifsTopbar" class="max-h-64 overflow-y-auto divide-y divide-neutral-200/80 my-2 space-y-1">
+              <!-- Inyectado por admin.js -->
+            </div>
+            <div class="pt-1.5 border-t border-neutral-200 text-[10px] text-neutral-600 text-center">
+              Alertas sonoras y sincronización en tiempo real
+            </div>
+          </div>
+        </div>
+
+        <!-- BOTÓN CHAT CON CLIENTES EN LA BARRA SUPERIOR -->
+        <button id="btnAbrirChatAdmin" type="button" class="relative p-1.5 px-3 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-200 text-neutral-700 hover:text-[#171717] transition flex items-center gap-2 shadow-xs" title="Centro de Dudas y Chat en Vivo con Clientes">
+          <svg class="w-4 h-4 text-neutral-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <span class="text-xs font-bold hidden sm:inline">Chat Clientes</span>
+          <span id="badgeChatAdminCount" class="bg-[#0C6059] text-white font-extrabold text-[10px] w-4 h-4 rounded-full flex items-center justify-center animate-pulse">1</span>
+        </button>
+
+        <span class="text-xs text-neutral-600 hidden md:inline" id="topbarFechaActual">Miércoles, 18 de Noviembre de 2026</span>
+        <button id="btnSimularNuevaCita" type="button" class="btn-gold text-xs px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow-sm">
+          <span>+</span> Simular Cita Web
+        </button>
+      </div>
+    </header>
+
+    <!-- ÁREA DE CONTENEDORES DE MÓDULOS (COMPLETA A ANCHO COMPLETO) -->
+    <main class="p-4 sm:p-6 lg:p-8 space-y-6 w-full min-w-0 flex-1 bg-[#FAFAFA]">
+
+      <!-- ===============================================================
+           MÓDULO 1: CITAS & RESERVAS (ADMIN & AYUDANTE)
+           3 BOTONES DE ESTADO: PENDIENTE | CONFIRMADO | ATENDIDO
+           =============================================================== -->
+      <section id="modulo-citas" class="tab-content space-y-5 animate-fade-in w-full">
+        
+        <!-- Tarjeta Informativa especial si el rol es Ayudante -->
+        <div id="bannerAyudanteCitas" class="hidden p-4 rounded-2xl bg-[#35618A]/10 border border-blue-500/30 flex items-start sm:items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">👩‍💼</span>
+            <div>
+              <p class="text-xs font-bold text-[#274E74]">Rol: Ayudante / Asistente (Sofía Ramírez)</p>
+              <p class="text-[11px] text-[#274E74]">Revisa las reservas que llegan de la web, presiona <strong class="text-neutral-900">"Avisar al Doctor"</strong> cuando el paciente llegue a sala y gestiona el flujo de atención.</p>
+            </div>
+          </div>
+          <span class="text-[10px] font-bold px-2 py-1 bg-blue-500/20 text-[#274E74] rounded-lg shrink-0">Flujo de Recepción</span>
+        </div>
+
+        <!-- Métricas Rápidas de Citas del Día -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 w-full">
+          <div class="dark-panel p-4 rounded-2xl border border-neutral-200">
+            <div class="flex items-center justify-between text-neutral-600 text-xs">
+              <span>Total Citas</span>
+              <span>📅</span>
+            </div>
+            <p id="statTotalCitas" class="text-2xl font-extrabold text-neutral-900 mt-1">3</p>
+            <span class="text-[10px] text-neutral-600">Agendadas para hoy</span>
+          </div>
+          <div class="dark-panel p-4 rounded-2xl border border-amber-500/20 bg-amber-500/5">
+            <div class="flex items-center justify-between text-[#79450B] text-xs font-semibold">
+              <span>Pendientes</span>
+              <span>⏳</span>
+            </div>
+            <p id="statPendientes" class="text-2xl font-extrabold text-[#79450B] mt-1">1</p>
+            <span class="text-[10px] text-[#79450B]">Esperando evaluación</span>
+          </div>
+          <div class="dark-panel p-4 rounded-2xl border border-blue-500/20 bg-blue-500/5">
+            <div class="flex items-center justify-between text-[#274E74] text-xs font-semibold">
+              <span>Confirmadas</span>
+              <span>✓</span>
+            </div>
+            <p id="statConfirmadas" class="text-2xl font-extrabold text-[#274E74] mt-1">1</p>
+            <span class="text-[10px] text-[#274E74]">Paciente asistirá</span>
+          </div>
+          <div class="dark-panel p-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/5">
+            <div class="flex items-center justify-between text-[#0C6059] text-xs font-semibold">
+              <span>Atendidas</span>
+              <span>★</span>
+            </div>
+            <p id="statAtendidas" class="text-2xl font-extrabold text-[#0C6059] mt-1">1</p>
+            <span class="text-[10px] text-[#0C6059]">En ficha de seguimiento</span>
+          </div>
+        </div>
+
+        <!-- Filtros y Búsqueda -->
+        <div class="dark-panel p-4 rounded-2xl flex flex-wrap items-center justify-between gap-4 w-full">
+          <div class="flex flex-wrap items-center gap-3">
+            <div class="flex items-center gap-2">
+              <label for="filterDateInput" class="text-xs font-semibold text-neutral-600">Fecha:</label>
+              <input type="date" id="filterDateInput" class="bg-neutral-100 border border-[#8A8A8A] rounded-xl px-3 py-1.5 text-xs text-neutral-900 focus:outline-none focus:border-[#0C6059]">
+            </div>
+            <button id="btnFiltroHoy" type="button" class="px-3 py-1.5 text-xs font-bold rounded-xl bg-neutral-100 hover:bg-neutral-100 text-neutral-700 transition">Hoy</button>
+            <button id="btnFiltroTodas" type="button" class="px-3 py-1.5 text-xs font-bold rounded-xl bg-neutral-100 hover:bg-neutral-100 text-neutral-700 transition">Ver Todas</button>
+          </div>
+
+          <div class="relative w-full sm:w-72">
+            <input type="text" id="inputBuscarPaciente" placeholder="Buscar por nombre o DNI..." class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl pl-9 pr-3 py-1.5 text-xs text-neutral-900 placeholder-neutral-600 focus:outline-none focus:border-[#0C6059]">
+            <svg class="w-4 h-4 text-neutral-600 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+        </div>
+
+        <!-- TABLA DE CITAS CON LOS 3 BOTONES DE ESTADO (ANCHO COMPLETO) -->
+        <div class="dark-panel rounded-2xl overflow-hidden border border-[#0C6059]/20 shadow-xl w-full">
+          <div class="overflow-x-auto w-full">
+            <table class="w-full text-left border-collapse min-w-[720px]">
+              <thead>
+                <tr class="bg-neutral-100/90 border-b border-neutral-200 text-[11px] font-bold uppercase tracking-wider text-neutral-600">
+                  <th class="py-3.5 px-4">Paciente / Documento</th>
+                  <th class="py-3.5 px-4">Tratamiento & Motivo</th>
+                  <th class="py-3.5 px-4">Horario</th>
+                  <th class="py-3.5 px-4 text-center">3 Botones de Estado</th>
+                  <th class="py-3.5 px-4 text-right">Acción Clínica</th>
+                </tr>
+              </thead>
+              <tbody id="tablaCitasBody" class="divide-y divide-neutral-200 text-xs">
+                <!-- Filas predeterminadas de respaldo para carga instantánea -->
+                <tr class="hover:bg-neutral-100/40 transition">
+                  <td class="py-3 px-4">
+                    <div class="flex items-center gap-2.5">
+                      <div class="w-8 h-8 rounded-lg bg-neutral-100 border border-neutral-300 flex items-center justify-center text-xs font-bold text-[#0C6059]">M</div>
+                      <div>
+                        <span class="font-bold text-neutral-900 block">Paciente Demo 05</span>
+                        <span class="text-[10px] text-neutral-600">DNI: 00000005 • +51 000 000 007</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 px-4">
+                    <span class="font-medium text-neutral-700 block">Profilaxis Dental con Ultrasonido</span>
+                    <span class="text-[10px] text-neutral-600 italic block">"Limpieza anual preventiva"</span>
+                  </td>
+                  <td class="py-3 px-4 whitespace-nowrap">
+                    <span class="text-[#0C6059] font-mono font-bold block">09:45 AM</span>
+                    <span class="text-[10px] text-neutral-600 block">Hoy</span>
+                  </td>
+                  <td class="py-3 px-4 text-center">
+                    <div class="inline-flex items-center gap-1.5 p-1 rounded-xl bg-neutral-50/60 border border-neutral-200">
+                      <button type="button" onclick="cambiarEstadoCitaDirecto(1, 'PENDIENTE')" class="btn-status-badge bg-neutral-100 text-neutral-600 border-neutral-300 hover:text-[#79450B]">⏳ Pendiente</button>
+                      <button type="button" onclick="cambiarEstadoCitaDirecto(1, 'CONFIRMADA')" class="btn-status-badge bg-neutral-100 text-neutral-600 border-neutral-300 hover:text-[#274E74]">✓ Confirmado</button>
+                      <button type="button" onclick="cambiarEstadoCitaDirecto(1, 'ATENDIDA')" class="btn-status-badge bg-emerald-500/30 text-[#0C6059] border-emerald-500 ring-1 ring-[#0C6059]">★ Atendido</button>
+                    </div>
+                  </td>
+                  <td class="py-3 px-4 text-right whitespace-nowrap">
+                    <button type="button" onclick="abrirModalEvaluar(1)" class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-neutral-100 text-neutral-700 border border-neutral-300 hover:border-[#0C6059] hover:text-[#0C6059] transition">
+                      🩺 Evaluar
+                    </button>
+                  </td>
+                </tr>
+
+                <tr class="hover:bg-neutral-100/40 transition">
+                  <td class="py-3 px-4">
+                    <div class="flex items-center gap-2.5">
+                      <div class="w-8 h-8 rounded-lg bg-neutral-100 border border-neutral-300 flex items-center justify-center text-xs font-bold text-[#0C6059]">C</div>
+                      <div>
+                        <span class="font-bold text-neutral-900 block">Paciente Demo 02</span>
+                        <span class="text-[10px] text-neutral-600">DNI: 00000003 • +51 000 000 006</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 px-4">
+                    <span class="font-medium text-neutral-700 block">Restauración Estética con Resina 3M</span>
+                    <span class="text-[10px] text-neutral-600 italic block">"Dolor leve al masticar alimentos fríos"</span>
+                  </td>
+                  <td class="py-3 px-4 whitespace-nowrap">
+                    <span class="text-[#0C6059] font-mono font-bold block">11:15 AM</span>
+                    <span class="text-[10px] text-neutral-600 block">Hoy</span>
+                  </td>
+                  <td class="py-3 px-4 text-center">
+                    <div class="inline-flex items-center gap-1.5 p-1 rounded-xl bg-neutral-50/60 border border-neutral-200">
+                      <button type="button" onclick="cambiarEstadoCitaDirecto(2, 'PENDIENTE')" class="btn-status-badge bg-neutral-100 text-neutral-600 border-neutral-300 hover:text-[#79450B]">⏳ Pendiente</button>
+                      <button type="button" onclick="cambiarEstadoCitaDirecto(2, 'CONFIRMADA')" class="btn-status-badge bg-blue-500/30 text-[#274E74] border-blue-500 ring-1 ring-[#35618A]">✓ Confirmado</button>
+                      <button type="button" onclick="cambiarEstadoCitaDirecto(2, 'ATENDIDA')" class="btn-status-badge bg-neutral-100 text-neutral-600 border-neutral-300 hover:text-[#0C6059]">★ Atendido</button>
+                    </div>
+                  </td>
+                  <td class="py-3 px-4 text-right whitespace-nowrap">
+                    <button type="button" onclick="abrirModalEvaluar(2)" class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-neutral-100 text-neutral-700 border border-neutral-300 hover:border-[#0C6059] hover:text-[#0C6059] transition">
+                      🩺 Evaluar
+                    </button>
+                  </td>
+                </tr>
+
+                <tr class="hover:bg-neutral-100/40 transition">
+                  <td class="py-3 px-4">
+                    <div class="flex items-center gap-2.5">
+                      <div class="w-8 h-8 rounded-lg bg-neutral-100 border border-neutral-300 flex items-center justify-center text-xs font-bold text-[#0C6059]">L</div>
+                      <div>
+                        <span class="font-bold text-neutral-900 block">Paciente Demo 04</span>
+                        <span class="text-[10px] text-neutral-600">DNI: 00000007 • +51 000 000 004</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 px-4">
+                    <span class="font-medium text-neutral-700 block">Blanqueamiento Dental Láser Gold</span>
+                    <span class="text-[10px] text-neutral-600 italic block">"Consulta para blanqueamiento antes de graduación"</span>
+                  </td>
+                  <td class="py-3 px-4 whitespace-nowrap">
+                    <span class="text-[#0C6059] font-mono font-bold block">03:30 PM</span>
+                    <span class="text-[10px] text-neutral-600 block">Hoy</span>
+                  </td>
+                  <td class="py-3 px-4 text-center">
+                    <div class="inline-flex items-center gap-1.5 p-1 rounded-xl bg-neutral-50/60 border border-neutral-200">
+                      <button type="button" onclick="cambiarEstadoCitaDirecto(3, 'PENDIENTE')" class="btn-status-badge bg-amber-500/30 text-[#79450B] border-amber-500 ring-1 ring-[#A56519]">⏳ Pendiente</button>
+                      <button type="button" onclick="cambiarEstadoCitaDirecto(3, 'CONFIRMADA')" class="btn-status-badge bg-neutral-100 text-neutral-600 border-neutral-300 hover:text-[#274E74]">✓ Confirmado</button>
+                      <button type="button" onclick="cambiarEstadoCitaDirecto(3, 'ATENDIDA')" class="btn-status-badge bg-neutral-100 text-neutral-600 border-neutral-300 hover:text-[#0C6059]">★ Atendido</button>
+                    </div>
+                  </td>
+                  <td class="py-3 px-4 text-right whitespace-nowrap">
+                    <button type="button" onclick="abrirModalEvaluar(3)" class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-neutral-100 text-neutral-700 border border-neutral-300 hover:border-[#0C6059] hover:text-[#0C6059] transition">
+                      🩺 Evaluar
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           MÓDULO 2: CLIENTES DE CONTROL MENSUAL / BRACKETS (SOLO ADMIN)
+           PERMITE CREAR CORREO Y CONTRASEÑA PARA QUE ELLOS ENTREN AL SISTEMA
+           =============================================================== -->
+      <section id="modulo-brackets" class="tab-content hidden space-y-6 w-full">
+        <div class="dark-panel p-5 rounded-2xl border border-[#0C6059]/30 bg-gradient-to-r from-[#EAF5F2] to-[#F4F9F8]">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-widest text-[#0C6059] bg-[#0C6059]/10 px-2 py-0.5 rounded-full border border-[#0C6059]/30">Exclusivo Administrador</span>
+              <h2 class="text-base sm:text-lg font-bold text-neutral-900 mt-1 flex items-center gap-2">
+                <span>🦷</span> Clientes de Control Mensual (Ortodoncia & Brackets)
+              </h2>
+              <p class="text-xs text-neutral-600 mt-0.5">
+                Crea aquí el <strong class="text-neutral-900">correo</strong> y la <strong class="text-neutral-900">contraseña</strong> de tus pacientes de ortodoncia para que puedan iniciar sesión cada mes en la web y consultar su control y pago.
+              </p>
+            </div>
+            <div class="text-right">
+              <span id="totalPacientesBracketsBadge" class="text-xs font-bold text-[#0C6059] bg-neutral-100 px-3 py-1.5 rounded-xl border border-[#0C6059]/40">
+                3 Pacientes Registrados
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 w-full">
+          
+          <!-- Formulario: Crear Cuenta y Contraseña de Paciente Mensual -->
+          <div class="lg:col-span-5 dark-panel p-6 rounded-2xl border border-[#0C6059]/25">
+            <h3 class="text-sm font-bold text-neutral-900 flex items-center gap-2 pb-3 border-b border-neutral-200">
+              <span>✨</span> Crear Nueva Cuenta de Paciente
+            </h3>
+            
+            <form id="formCrearClienteBrackets" class="mt-4 space-y-3.5">
+              <div>
+                <label for="brackNombre" class="block text-xs font-semibold text-neutral-700 mb-1">Nombre Completo del Paciente *</label>
+                <input type="text" id="brackNombre" required placeholder="Ej. Paciente Demo 03" class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl px-3 py-2 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none placeholder-neutral-600">
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label for="brackDni" class="block text-xs font-semibold text-neutral-700 mb-1">DNI / Documento *</label>
+                  <input type="text" id="brackDni" required placeholder="8 dígitos" class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl px-3 py-2 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none placeholder-neutral-600">
+                </div>
+                <div>
+                  <label for="brackTelefono" class="block text-xs font-semibold text-neutral-700 mb-1">Celular / WhatsApp *</label>
+                  <input type="tel" id="brackTelefono" required placeholder="+51 9..." class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl px-3 py-2 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none placeholder-neutral-600">
+                </div>
+              </div>
+
+              <!-- CREDENCIALES DE ACCESO AL SISTEMA -->
+              <div class="p-3 rounded-xl bg-neutral-100/90 border border-[#0C6059]/40 space-y-2.5">
+                <span class="text-[10px] font-bold text-[#0C6059] uppercase tracking-wide block">Credenciales de Inicio de Sesión para el Paciente:</span>
+                <div>
+                  <label for="brackEmail" class="block text-[11px] font-semibold text-neutral-700 mb-0.5">Correo Electrónico (Usuario) *</label>
+                  <input type="email" id="brackEmail" required placeholder="paciente13@clinica.example" class="w-full bg-neutral-50 border border-[#8A8A8A] rounded-lg px-2.5 py-1.5 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none placeholder-neutral-600">
+                </div>
+                <div>
+                  <label for="brackPassword" class="block text-[11px] font-semibold text-neutral-700 mb-0.5">Contraseña de Acceso *</label>
+                  <div class="relative">
+                    <input type="text" id="brackPassword" required placeholder="Contraseña segura" value="brackets2026" class="w-full bg-neutral-50 border border-[#8A8A8A] rounded-lg px-2.5 py-1.5 text-xs text-[#0C6059] font-mono focus:border-[#0C6059] focus:outline-none placeholder-neutral-600">
+                    <button type="button" id="btnGenPass" class="absolute right-2 top-1.5 text-[10px] text-neutral-600 hover:text-neutral-900 font-semibold">Generar</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- DETALLES DEL CONTROL MENSUAL -->
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label for="brackTipo" class="block text-xs font-semibold text-neutral-700 mb-1">Tipo de Ortodoncia *</label>
+                  <select id="brackTipo" class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl px-3 py-2 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none">
+                    <option value="Ortodoncia Metálica MBT (Brackets)">Brackets Metálicos</option>
+                    <option value="Ortodoncia Estética Zafiro">Brackets de Zafiro</option>
+                    <option value="Ortodoncia Autoligada Damon">Autoligados Damon</option>
+                    <option value="Alineadores Invisibles">Alineadores Invisibles</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="brackDiaControl" class="block text-xs font-semibold text-neutral-700 mb-1">Día de Control Cada Mes *</label>
+                  <input type="number" id="brackDiaControl" min="1" max="31" value="15" required class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl px-3 py-2 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none">
+                </div>
+              </div>
+
+              <div>
+                <label for="brackCuota" class="block text-xs font-semibold text-neutral-700 mb-1">Cuota Mensual (S/) *</label>
+                <input type="number" id="brackCuota" step="0.50" value="120.00" required class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl px-3 py-2 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none">
+              </div>
+
+              <button type="submit" class="w-full btn-gold py-2.5 rounded-xl text-xs font-bold shadow-md">
+                ✓ Crear Cuenta y Habilitar Acceso al Sistema
+              </button>
+            </form>
+          </div>
+
+          <!-- Tabla / Lista de Clientes con Control Mensual Activo -->
+          <div class="lg:col-span-7 dark-panel p-6 rounded-2xl border border-neutral-200 space-y-3">
+            <div class="flex items-center justify-between pb-3 border-b border-neutral-200">
+              <h3 class="text-sm font-bold text-neutral-900 flex items-center gap-2">
+                <span>📋</span> Pacientes con Control Mensual Activo
+              </h3>
+              <span class="text-[11px] text-neutral-600">Pueden iniciar sesión con su correo</span>
+            </div>
+
+            <div id="listaClientesBrackets" class="space-y-3 max-h-[520px] overflow-y-auto pr-1">
+              <!-- Inyectado por admin.js -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           MÓDULO 3: SEGUIMIENTO CLÍNICO
+           ADMIN: EDITABLE & NUEVO REGISTRO
+           AYUDANTE: SOLO LECTURA (SIN EDITAR)
+           INCLUYE: PRÓXIMA CITA, QUÉ MES, MONTO DEL PAGO Y RECADO MÉDICO
+           =============================================================== -->
+      <section id="modulo-seguimiento" class="tab-content hidden space-y-6 w-full">
+        
+        <!-- Indicador de Modo de Acceso (Admin vs Ayudante) -->
+        <div id="bannerModoSeguimiento" class="p-4 rounded-2xl bg-[#EAF5F2] border border-[#0C6059]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl" id="iconModoSeguimiento">🩺</span>
+            <div>
+              <h2 id="tituloModoSeguimiento" class="text-sm sm:text-base font-bold text-neutral-900">
+                Módulo 3: Seguimiento Clínico de Pacientes
+              </h2>
+              <p id="descModoSeguimiento" class="text-xs text-neutral-600">
+                Control de pacientes en tratamiento, fecha y mes de próxima cita, cobro mensual y recado médico de indicaciones.
+              </p>
+            </div>
+          </div>
+          <span id="badgeEstadoPermisoSeguimiento" class="text-xs font-bold px-3 py-1 rounded-xl bg-emerald-500/10 text-[#0C6059] border border-emerald-500/20 shrink-0">
+            Modo Odontólogo (Control Total)
+          </span>
+        </div>
+
+        <!-- FORMULARIO DE NUEVO SEGUIMIENTO (OCULTO PARA AYUDANTE) -->
+        <div id="panelFormSeguimientoAdmin" class="dark-panel p-6 rounded-2xl border border-[#0C6059]/25 space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-neutral-200">
+            <h3 class="text-sm font-bold text-neutral-900 flex items-center gap-2">
+              <span>📝</span> Registrar Nuevo Seguimiento / Observación Médica
+            </h3>
+            <span class="text-[11px] text-[#0C6059]">Se sincroniza con el Odontograma y el Portal</span>
+          </div>
+
+          <form id="formNuevoSeguimiento" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="segPacienteSelect" class="block text-xs font-semibold text-neutral-700 mb-1">Paciente *</label>
+              <select id="segPacienteSelect" required class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl px-3 py-2 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none">
+                <!-- Inyectado por admin.js con pacientes de citas y brackets -->
+              </select>
+            </div>
+
+            <div>
+              <label for="segTratamientoInput" class="block text-xs font-semibold text-neutral-700 mb-1">Tratamiento Clínico *</label>
+              <input type="text" id="segTratamientoInput" required placeholder="Ej. Ortodoncia / Curaciones / Profilaxis" class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl px-3 py-2 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none placeholder-neutral-600">
+            </div>
+
+            <div class="md:col-span-2">
+              <label for="segDiagnostico" class="block text-xs font-semibold text-neutral-700 mb-1">Diagnóstico Clínico *</label>
+              <input type="text" id="segDiagnostico" required placeholder="Ej. Maloclusión Clase II / Caries Oclusal Pieza 16" class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl px-3 py-2 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none placeholder-neutral-600">
+            </div>
+
+            <div class="md:col-span-2">
+              <label for="segProcedimiento" class="block text-xs font-semibold text-neutral-700 mb-1">Procedimiento Realizado Hoy *</label>
+              <textarea id="segProcedimiento" rows="2" required placeholder="Detalle del procedimiento odontológico..." class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl px-3 py-2 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none placeholder-neutral-600"></textarea>
+            </div>
+
+            <!-- LOS 3 CAMPOS CLAVE SOLICITADOS: PRÓXIMA CITA + QUÉ MES + PAGO DE ESE MES -->
+            <div class="p-3.5 rounded-xl bg-neutral-100/90 border border-neutral-200 md:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <label for="segFechaProxima" class="block text-xs font-semibold text-[#0C6059] mb-1">📅 Fecha Próxima Cita *</label>
+                <input type="date" id="segFechaProxima" required class="w-full bg-neutral-50 border border-[#8A8A8A] rounded-xl px-3 py-1.5 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none">
+              </div>
+
+              <div>
+                <label for="segMesProxima" class="block text-xs font-semibold text-[#0C6059] mb-1">🗓️ ¿Qué Mes le Toca? *</label>
+                <input type="text" id="segMesProxima" required placeholder="Ej. Diciembre 2026" class="w-full bg-neutral-50 border border-[#8A8A8A] rounded-xl px-3 py-1.5 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none placeholder-neutral-600">
+              </div>
+
+              <div>
+                <label for="segMontoPago" class="block text-xs font-semibold text-[#0C6059] mb-1">💰 Pago de ese Mes (S/) *</label>
+                <input type="number" id="segMontoPago" step="0.50" value="120.00" required class="w-full bg-neutral-50 border border-[#8A8A8A] rounded-xl px-3 py-1.5 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none">
+              </div>
+            </div>
+
+            <!-- RECADO MÉDICO QUE DEBE TENER EN CUENTA EL PACIENTE -->
+            <div class="md:col-span-2">
+              <label for="segRecado" class="block text-xs font-semibold text-[#79450B] mb-1">
+                📝 Recado / Cosas que debe tener en cuenta el paciente:
+              </label>
+              <textarea id="segRecado" rows="3" placeholder="Escribe aquí el recado para el paciente (ej: No morder tostadas, usar cera en molar 16, usar enjuague bucal por 7 días)..." class="w-full bg-[#A56519]/10 border border-amber-500/30 rounded-xl p-3 text-xs text-[#79450B] placeholder-[#79450B] focus:border-amber-400 focus:outline-none"></textarea>
+            </div>
+
+            <div class="md:col-span-2 flex justify-end">
+              <button type="submit" class="btn-gold px-6 py-2.5 rounded-xl text-xs font-bold shadow-md">
+                ✓ Guardar Ficha de Seguimiento & Notificar
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- LISTADO POR LISTA DE CONTROLES MENSUALES Y SEGUIMIENTO -->
+        <div class="space-y-4 w-full">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-neutral-200">
+            <div>
+              <h3 class="text-sm sm:text-base font-bold text-neutral-900 flex items-center gap-2">
+                <span>🦷</span> Lista de Controles Mensuales & Seguimiento de Pacientes
+              </h3>
+              <p class="text-xs text-neutral-600">
+                Visualiza el mes de cita, cuota a pagar y marca como <strong class="text-[#0C6059]">Confirmado</strong> cuando el paciente asista a su control.
+              </p>
+            </div>
+            
+            <!-- Filtro de Controles y Contador -->
+            <div class="flex items-center gap-2">
+              <div class="flex items-center gap-1 bg-neutral-100 p-1 rounded-xl border border-neutral-200 text-xs">
+                <button type="button" onclick="filtrarControlesSeguimiento('TODOS')" id="btnFiltroCtrlTodos" class="px-2.5 py-1 rounded-lg font-bold bg-[#0C6059] text-white transition">Todos</button>
+                <button type="button" onclick="filtrarControlesSeguimiento('PENDIENTES')" id="btnFiltroCtrlPend" class="px-2.5 py-1 rounded-lg font-medium text-neutral-600 hover:text-neutral-900 transition">⏳ Pendientes</button>
+                <button type="button" onclick="filtrarControlesSeguimiento('CONFIRMADOS')" id="btnFiltroCtrlConf" class="px-2.5 py-1 rounded-lg font-medium text-neutral-600 hover:text-neutral-900 transition">✓ Cumplidos</button>
+              </div>
+              <span id="totalControlesBadge" class="text-xs font-bold px-2.5 py-1 rounded-xl bg-[#EAF5F2] text-[#0C6059] border border-[#0C6059]/30">6 Controles</span>
+            </div>
+          </div>
+
+          <!-- Buscador Rápido de Paciente en la Lista -->
+          <div class="flex items-center gap-3 bg-[#FAFAFA] p-2 rounded-xl border border-neutral-200">
+            <svg class="w-4 h-4 text-neutral-600 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input type="text" id="inputBuscarControlSeg" oninput="buscarEnListaControles()" placeholder="Buscar en lista por paciente, DNI o mes (ej: Paciente Demo 03, Diciembre)..." class="bg-transparent border-none text-xs text-neutral-900 placeholder-neutral-600 focus:outline-none w-full">
+          </div>
+
+          <!-- TABLA RESPONSIVA DE SEGUIMIENTO POR LISTA (SOLICITADO POR EL USUARIO) -->
+          <div class="overflow-x-auto rounded-2xl border border-neutral-200 bg-white">
+            <table class="w-full text-left text-xs text-neutral-700">
+              <thead class="bg-[#EAF5F2] text-[11px] uppercase tracking-wider text-neutral-600 border-b border-neutral-200 font-semibold">
+                <tr>
+                  <th class="py-3 px-4">Paciente / Documento</th>
+                  <th class="py-3 px-3">Tratamiento</th>
+                  <th class="py-3 px-3">Mes que le toca</th>
+                  <th class="py-3 px-3">Fecha de Cita</th>
+                  <th class="py-3 px-3">Cuánto va a pagar</th>
+                  <th class="py-3 px-3">Recado del Doctor</th>
+                  <th class="py-3 px-3 text-center">Estado de Control</th>
+                  <th class="py-3 px-4 text-center">Acción (Confirmar)</th>
+                </tr>
+              </thead>
+              <tbody id="tablaControlesSeguimientoBody" class="divide-y divide-neutral-200/80">
+                <!-- Inyectado por admin.js con los controles mensuales -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Contenedor alternativo de tarjetas (para compatibilidad de vista) -->
+          <div id="listaSeguimientosCards" class="hidden"></div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           MÓDULO 4: ODONTOGRAMA COMPLETO (32 PIEZAS DENTALES) (SOLO ADMIN)
+           VINCULADO AL MÓDULO DE SEGUIMIENTO
+           =============================================================== -->
+      <section id="modulo-odontograma" class="tab-content hidden space-y-6 w-full">
+        <div class="dark-panel p-5 rounded-2xl border border-[#0C6059]/30 bg-gradient-to-r from-[#EAF5F2] to-[#F4F9F8]">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-widest text-[#0C6059] bg-[#0C6059]/10 px-2 py-0.5 rounded-full border border-[#0C6059]/30">Exclusivo Administrador</span>
+              <h2 class="text-base sm:text-lg font-bold text-neutral-900 mt-1 flex items-center gap-2">
+                <span>🦷</span> Odontograma Clínico Interactivo (32 Piezas Dentales)
+              </h2>
+              <p class="text-xs text-neutral-600 mt-0.5">
+                Mapea el estado de cada diente y sincroniza los hallazgos directamente con la ficha de seguimiento del paciente.
+              </p>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <label for="selectOdontoPaciente" class="text-xs text-neutral-700 font-semibold">Paciente:</label>
+              <select id="selectOdontoPaciente" class="bg-neutral-100 border border-[#8A8A8A] rounded-xl px-3 py-1.5 text-xs text-neutral-900 focus:border-[#0C6059]">
+                <option value="1">Paciente Demo 05</option>
+                <option value="2">Paciente Demo 02</option>
+                <option value="4">Paciente Demo 03 (Brackets)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leyenda de Estados Dentales -->
+        <div class="dark-panel p-3.5 rounded-2xl flex flex-wrap items-center justify-center gap-4 text-xs w-full">
+          <div class="flex items-center gap-2">
+            <span class="odontogram-tooth odontogram-tooth--legend sano" aria-hidden="true"></span>
+            <span class="text-neutral-700">Sano</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="odontogram-tooth odontogram-tooth--legend caries" aria-hidden="true"></span>
+            <span class="text-neutral-700 font-semibold text-[#9B2626]">Caries (Requiere Tratamiento)</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="odontogram-tooth odontogram-tooth--legend restaurado" aria-hidden="true"></span>
+            <span class="text-neutral-700">Restaurado con Resina</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="odontogram-tooth odontogram-tooth--legend endodoncia" aria-hidden="true"></span>
+            <span class="text-neutral-700">Endodoncia / Corona</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="odontogram-tooth odontogram-tooth--legend ausente" aria-hidden="true"></span>
+            <span class="text-neutral-600">Ausente / Extraído</span>
+          </div>
+        </div>
+
+        <!-- GRILLA DE LAS 32 PIEZAS DENTALES (ANCHO COMPLETO) -->
+        <div class="dark-panel p-6 rounded-2xl border border-neutral-200 space-y-6 w-full">
+          
+          <!-- ARCADA SUPERIOR (MAXILAR) -->
+          <div>
+            <div class="flex items-center justify-between pb-2 mb-3 border-b border-neutral-200">
+              <span class="text-xs font-bold text-neutral-700 uppercase tracking-wider">Arcada Superior (Maxilar)</span>
+              <span class="text-[11px] text-[#0C6059]">Piezas 18 al 11 | 21 al 28</span>
+            </div>
+            <div id="gridArcadaSuperior" class="flex flex-wrap items-center justify-center gap-2">
+              <!-- Inyectado por admin.js -->
+            </div>
+          </div>
+
+          <!-- LÍNEA MEDIA DIVISORIA -->
+          <div class="border-t border-dashed border-[#0C6059]/30 relative my-4 text-center">
+            <span class="bg-white px-4 text-[10px] text-neutral-600 uppercase tracking-widest relative -top-2.5">
+              Plano de Oclusión Dental
+            </span>
+          </div>
+
+          <!-- ARCADA INFERIOR (MANDÍBULA) -->
+          <div>
+            <div class="flex items-center justify-between pb-2 mb-3 border-b border-neutral-200">
+              <span class="text-xs font-bold text-neutral-700 uppercase tracking-wider">Arcada Inferior (Mandíbula)</span>
+              <span class="text-[11px] text-[#0C6059]">Piezas 48 al 41 | 31 al 38</span>
+            </div>
+            <div id="gridArcadaInferior" class="flex flex-wrap items-center justify-center gap-2">
+              <!-- Inyectado por admin.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL DE EDICIÓN DE PIEZA SELECCIONADA -->
+        <div id="panelDienteSeleccionado" class="dark-panel p-5 rounded-2xl border border-[#0C6059]/40 bg-[#EAF5F2] flex flex-col md:flex-row md:items-center justify-between gap-4 w-full">
+          <div class="flex items-center gap-3">
+            <div id="badgeDienteNum" class="w-12 h-12 rounded-xl bg-neutral-100 border border-[#0C6059] flex items-center justify-center text-lg font-bold text-[#0C6059]">
+              16
+            </div>
+            <div>
+              <p class="text-xs font-bold text-neutral-900">Pieza Dental <span id="txtDienteSeleccionado">16 (Primer Molar Superior Derecho)</span></p>
+              <p id="txtDienteEstadoDesc" class="text-[11px] text-[#79450B]">Estado actual: Caries oclusal activa</p>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2">
+            <button type="button" class="btn-diente-cambio px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500/20 text-[#0C6059] border border-emerald-500/40 hover:bg-emerald-500/30" data-estado="SANO">Sano</button>
+            <button type="button" class="btn-diente-cambio px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-red-500/20 text-[#9B2626] border border-red-500/40 hover:bg-red-500/30" data-estado="CARIES">Caries</button>
+            <button type="button" class="btn-diente-cambio px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-blue-500/20 text-[#274E74] border border-blue-500/40 hover:bg-blue-500/30" data-estado="RESTAURADO">Restaurado</button>
+            <button type="button" class="btn-diente-cambio px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-amber-500/20 text-[#79450B] border border-amber-500/40 hover:bg-amber-500/30" data-estado="ENDODONCIA">Endodoncia</button>
+            <button type="button" class="btn-diente-cambio px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-neutral-100 text-neutral-700 border border-neutral-300 hover:bg-neutral-500" data-estado="AUSENTE">Ausente</button>
+            <button id="btnSincronizarSeguimiento" type="button" class="btn-gold px-4 py-1.5 rounded-lg text-xs font-bold shadow-sm ml-2">
+              Sincronizar a Seguimiento 📋
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           MÓDULO 5: REPORTES & FINANZAS DEL MES (SOLO ADMIN)
+           INCLUYE EL CÍRCULO AVISANDO QUÉ CLIENTE VIENE MÁS
+           =============================================================== -->
+      <section id="modulo-reportes" class="tab-content hidden space-y-6 w-full">
+        <div class="dark-panel p-5 rounded-2xl border border-[#0C6059]/30 bg-gradient-to-r from-[#EAF5F2] to-[#F4F9F8]">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-widest text-[#0C6059] bg-[#0C6059]/10 px-2 py-0.5 rounded-full border border-[#0C6059]/30">Exclusivo Administrador</span>
+              <h2 class="text-base sm:text-lg font-bold text-neutral-900 mt-1 flex items-center gap-2">
+                <span>📊</span> Reportes Clínicos, Pagos del Mes & Fidelidad
+              </h2>
+              <p class="text-xs text-neutral-600 mt-0.5">
+                Ingresos financieros, ticket promedio y gráfico circular indicando qué paciente acude más a la clínica.
+              </p>
+            </div>
+            <span class="text-xs font-bold text-[#0C6059] bg-emerald-500/10 px-3 py-1.5 rounded-xl border border-emerald-500/30">
+              Mes: Noviembre 2026
+            </span>
+          </div>
+        </div>
+
+        <!-- Tarjetas de KPIs Financieros -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 w-full">
+          <div class="dark-panel p-4 rounded-2xl border border-[#0C6059]/30">
+            <span class="text-xs text-neutral-600">Total Recaudado</span>
+            <p class="text-2xl font-extrabold text-[#0C6059] mt-1">S/ 7,640.00</p>
+            <span class="text-[10px] text-[#0C6059] font-semibold">+23.4% vs mes anterior</span>
+          </div>
+          <div class="dark-panel p-4 rounded-2xl border border-blue-500/20">
+            <span class="text-xs text-neutral-600">Citas Atendidas</span>
+            <p class="text-2xl font-extrabold text-[#274E74] mt-1">23</p>
+            <span class="text-[10px] text-[#274E74]">Tasa asistencia: 92%</span>
+          </div>
+          <div class="dark-panel p-4 rounded-2xl border border-purple-500/20">
+            <span class="text-xs text-neutral-600">Ticket Promedio</span>
+            <p class="text-2xl font-extrabold text-[#5C4379] mt-1">S/ 185.00</p>
+            <span class="text-[10px] text-neutral-600">Por paciente</span>
+          </div>
+          <div class="dark-panel p-4 rounded-2xl border border-emerald-500/20">
+            <span class="text-xs text-neutral-600">Cuotas Brackets Cobradas</span>
+            <p class="text-2xl font-extrabold text-[#0C6059] mt-1">S/ 1,480.00</p>
+            <span class="text-[10px] text-[#0C6059]">Controles recurrentes</span>
+          </div>
+        </div>
+
+        <!-- EL CÍRCULO / GRÁFICO CIRCULAR DE QUÉ CLIENTE VIENE MÁS -->
+        <div class="dark-panel p-6 rounded-2xl border border-[#0C6059]/30 space-y-4 w-full">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-neutral-200">
+            <div>
+              <h3 class="text-sm font-bold text-neutral-900 flex items-center gap-2">
+                <span>🎯</span> Gráfico Circular: ¿Qué Cliente Viene Más a la Clínica?
+              </h3>
+              <p class="text-xs text-neutral-600">
+                Distribución porcentual de asistencia mensual y fidelización de pacientes recurrentes.
+              </p>
+            </div>
+            <span class="badge-gold">🥇 Paciente Estrella: Paciente Demo 05</span>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center w-full">
+            
+            <!-- CÍRCULO SVG INTERACTIVO -->
+            <div class="lg:col-span-5 flex flex-col items-center justify-center p-4">
+              <div class="relative w-56 h-56 flex items-center justify-center">
+                <svg class="w-full h-full -rotate-90 transform" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="40" stroke="#262626" stroke-width="14" fill="transparent" />
+                  
+                  <!-- Segmento 1: Paciente Demo 05 (38%) -->
+                  <circle cx="50" cy="50" r="40" stroke="#0E6A60" stroke-width="14" fill="transparent"
+                          stroke-dasharray="95.5 251.3" stroke-dashoffset="0" class="transition-all duration-700 hover:opacity-80 cursor-pointer">
+                    <title>Paciente Demo 05: 38% (6 Visitas)</title>
+                  </circle>
+
+                  <!-- Segmento 2: Paciente Demo 03 (28%) -->
+                  <circle cx="50" cy="50" r="40" stroke="#4779A9" stroke-width="14" fill="transparent"
+                          stroke-dasharray="70.3 251.3" stroke-dashoffset="-95.5" class="transition-all duration-700 hover:opacity-80 cursor-pointer">
+                    <title>Paciente Demo 03: 28% (4 Visitas)</title>
+                  </circle>
+
+                  <!-- Segmento 3: Paciente Demo 02 (20%) -->
+                  <circle cx="50" cy="50" r="40" stroke="#37856F" stroke-width="14" fill="transparent"
+                          stroke-dasharray="50.2 251.3" stroke-dashoffset="-165.8" class="transition-all duration-700 hover:opacity-80 cursor-pointer">
+                    <title>Paciente Demo 02: 20% (3 Visitas)</title>
+                  </circle>
+
+                  <!-- Segmento 4: Otros Pacientes (14%) -->
+                  <circle cx="50" cy="50" r="40" stroke="#72578D" stroke-width="14" fill="transparent"
+                          stroke-dasharray="35.3 251.3" stroke-dashoffset="-216" class="transition-all duration-700 hover:opacity-80 cursor-pointer">
+                    <title>Otros Pacientes: 14% (2 Visitas)</title>
+                  </circle>
+                </svg>
+
+                <!-- Centro del Círculo con Aviso del Paciente Top -->
+                <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4 pointer-events-none">
+                  <span class="text-[10px] text-neutral-600 font-semibold uppercase">Más Frecuente</span>
+                  <span class="text-sm font-extrabold text-[#0C6059] leading-tight">Paciente Demo 05</span>
+                  <span class="text-xs font-bold text-neutral-900">38% de visitas</span>
+                  <span class="text-[9px] text-[#0C6059] font-bold">6 Citas en el Mes</span>
+                </div>
+              </div>
+              <p class="text-[11px] text-neutral-600 text-center mt-3">
+                Círculo representativo de asistencia total a consultas y controles.
+              </p>
+            </div>
+
+            <!-- TABLA / LEYENDA DETALLADA DE CLIENTES FRECUENTES -->
+            <div class="lg:col-span-7 space-y-3 w-full">
+              <div class="p-3.5 rounded-xl bg-[#EAF5F2] border border-[#0C6059]/40 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <span class="w-3.5 h-3.5 rounded-full bg-[#0E6A60] shrink-0"></span>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <span class="text-xs font-bold text-neutral-900">Paciente Demo 05</span>
+                      <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#0C6059]/20 text-[#0C6059] border border-[#0C6059]/40">🥇 1° MÁS FRECUENTE</span>
+                    </div>
+                    <p class="text-[11px] text-neutral-600">Profilaxis, Control Preventivo & Resinas (6 asistencias)</p>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <span class="text-xs font-extrabold text-[#0C6059]">38%</span>
+                  <span class="block text-[10px] text-neutral-600">S/ 540.00 pagados</span>
+                </div>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-neutral-100 border border-blue-500/30 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <span class="w-3.5 h-3.5 rounded-full bg-[#4779A9] shrink-0"></span>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <span class="text-xs font-bold text-neutral-900">Paciente Demo 03</span>
+                      <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-500/20 text-[#274E74] border border-blue-500/40">🥈 2° LUGAR</span>
+                    </div>
+                    <p class="text-[11px] text-neutral-600">Control Mensual de Brackets Metálicos (4 asistencias)</p>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <span class="text-xs font-extrabold text-[#274E74]">28%</span>
+                  <span class="block text-[10px] text-neutral-600">S/ 480.00 pagados</span>
+                </div>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-neutral-100 border border-emerald-500/30 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <span class="w-3.5 h-3.5 rounded-full bg-[#37856F] shrink-0"></span>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <span class="text-xs font-bold text-neutral-900">Paciente Demo 02</span>
+                      <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-[#0C6059] border border-emerald-500/40">🥉 3° LUGAR</span>
+                    </div>
+                    <p class="text-[11px] text-neutral-600">Restauraciones Estéticas 3M (3 asistencias)</p>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <span class="text-xs font-extrabold text-[#0C6059]">20%</span>
+                  <span class="block text-[10px] text-neutral-600">S/ 450.00 pagados</span>
+                </div>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-neutral-100 border border-purple-500/30 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <span class="w-3.5 h-3.5 rounded-full bg-[#72578D] shrink-0"></span>
+                  <div>
+                    <span class="text-xs font-bold text-neutral-900">Paciente Demo 04 y otros</span>
+                    <p class="text-[11px] text-neutral-600">Blanqueamientos & Evaluaciones Nuevas (2 asistencias)</p>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <span class="text-xs font-extrabold text-[#5C4379]">14%</span>
+                  <span class="block text-[10px] text-neutral-600">S/ 430.00 pagados</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           MÓDULO 6: HISTORIAL CLÍNICO DE CITAS Y CONTROLES (ADMIN & AYUDANTE)
+           DESCARGAS EN PDF, WORD Y EXCEL
+           =============================================================== -->
+      <section id="modulo-historial" class="tab-content hidden space-y-6 w-full">
+        
+        <!-- ENCABEZADO CON LOS 3 BOTONES DE DESCARGA: PDF, WORD Y EXCEL -->
+        <div class="dark-panel p-5 sm:p-6 rounded-2xl border border-[#0C6059]/30 bg-gradient-to-r from-[#EAF5F2] to-[#F4F9F8] flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-[#0C6059] border border-emerald-500/30 text-xs font-semibold mb-1">
+              <span>📁</span> Módulo Oficial de Historial & Exportación
+            </div>
+            <h2 class="text-base sm:text-xl font-bold text-neutral-900 flex items-center gap-2">
+              Historial Clínico de Controles & Citas Asistidas
+            </h2>
+            <p class="text-xs text-neutral-700 mt-0.5">
+              Consulta cuántos controles asistió cada paciente y descarga el informe médico en el formato que necesites.
+            </p>
+          </div>
+
+          <!-- LOS 3 BOTONES DE DESCARGA SOLICITADOS -->
+          <div class="flex flex-wrap items-center gap-2 shrink-0">
+            <!-- BOTÓN 1: PDF -->
+            <button type="button" onclick="exportarHistorialPDF()" class="btn-gold py-2 px-3.5 rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-md hover:brightness-110 transition">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+              <span>Descargar PDF</span>
+            </button>
+
+            <!-- BOTÓN 2: WORD -->
+            <button type="button" onclick="exportarHistorialWord()" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-[#274E74] hover:bg-[#35618A] text-white flex items-center gap-1.5 shadow-md transition">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              <span>Descargar Word</span>
+            </button>
+
+            <!-- BOTÓN 3: EXCEL -->
+            <button type="button" onclick="exportarHistorialExcel()" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-[#0E6A60] hover:bg-[#0D7567] text-white flex items-center gap-1.5 shadow-md transition">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              <span>Descargar Excel</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 4 TARJETAS DE MÉTRICAS DEL HISTORIAL -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+          <div class="dark-panel p-4 rounded-xl border border-neutral-200 space-y-1">
+            <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-neutral-600">Total Asistencias</span>
+            <p id="kpiHistorialAsistidas" class="text-xl sm:text-2xl font-serif font-bold text-[#0C6059]">9 Citas</p>
+            <span class="text-[10px] text-neutral-600">Controles cumplidos</span>
+          </div>
+
+          <div class="dark-panel p-4 rounded-xl border border-neutral-200 space-y-1">
+            <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-neutral-600">Programadas</span>
+            <p id="kpiHistorialProgramadas" class="text-xl sm:text-2xl font-serif font-bold text-[#0C6059]">4 Citas</p>
+            <span class="text-[10px] text-neutral-600">Próximos meses</span>
+          </div>
+
+          <div class="dark-panel p-4 rounded-xl border border-neutral-200 space-y-1">
+            <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-neutral-600">Recaudado Cuotas</span>
+            <p id="kpiHistorialRecaudado" class="text-xl sm:text-2xl font-serif font-bold text-neutral-900">S/ 1,470.00</p>
+            <span class="text-[10px] text-[#0C6059]">Pagos completados</span>
+          </div>
+
+          <div class="dark-panel p-4 rounded-xl border border-neutral-200 space-y-1">
+            <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-neutral-600">Cumplimiento</span>
+            <p id="kpiHistorialTasa" class="text-xl sm:text-2xl font-serif font-bold text-[#274E74]">92.5%</p>
+            <span class="text-[10px] text-neutral-600">Fidelidad de pacientes</span>
+          </div>
+        </div>
+
+        <!-- BARRA DE BÚSQUEDA Y FILTRO DE TRATAMIENTO -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 bg-white p-3 rounded-2xl border border-neutral-200">
+          <div class="flex items-center gap-2 bg-[#FAFAFA] px-3 py-1.5 rounded-xl border border-neutral-200 w-full sm:w-80">
+            <svg class="w-4 h-4 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input type="text" id="inputBuscarHistorial" oninput="filtrarTablaHistorial()" placeholder="Buscar por paciente, DNI o mes..." class="bg-transparent border-none text-xs text-neutral-900 placeholder-neutral-600 focus:outline-none w-full">
+          </div>
+
+          <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+            <label class="text-xs text-neutral-600 font-medium hidden sm:inline">Filtrar:</label>
+            <select id="selectFiltroTratamientoHistorial" onchange="filtrarTablaHistorial()" class="bg-[#FAFAFA] border border-[#8A8A8A] rounded-xl px-3 py-1.5 text-xs text-neutral-900 focus:outline-none focus:border-[#0C6059]">
+              <option value="TODOS">Todos los Tratamientos</option>
+              <option value="Ortodoncia Metálica">Brackets Metálicos</option>
+              <option value="Ortodoncia Estética">Brackets Zafiro</option>
+              <option value="Alineadores">Alineadores Invisibles</option>
+              <option value="Profilaxis">Profilaxis & Limpieza</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- TABLA COMPLETA DEL HISTORIAL CLÍNICO -->
+        <div class="overflow-x-auto rounded-2xl border border-neutral-200 bg-white">
+          <table class="w-full text-left text-xs text-neutral-700">
+            <thead class="bg-[#EAF5F2] text-[11px] uppercase tracking-wider text-neutral-600 border-b border-neutral-200 font-semibold">
+              <tr>
+                <th class="py-3 px-4">Paciente / Documento</th>
+                <th class="py-3 px-3">Tratamiento</th>
+                <th class="py-3 px-3 text-center">N° Control</th>
+                <th class="py-3 px-3">Mes & Fecha</th>
+                <th class="py-3 px-3">Pago (S/)</th>
+                <th class="py-3 px-3">Procedimiento Realizado</th>
+                <th class="py-3 px-3 text-center">Estado</th>
+                <th class="py-3 px-3">Atendido por</th>
+              </tr>
+            </thead>
+            <tbody id="tablaHistorialClinicoBody" class="divide-y divide-neutral-200/80">
+              <!-- Inyectado por admin.js -->
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+
+      <!-- ===============================================================
+           MÓDULO 7: MI PERFIL (ADMIN & AYUDANTE)
+           INFORMACIÓN DEL USUARIO LOGUEADO
+           =============================================================== -->
+      <section id="modulo-perfil" class="tab-content hidden space-y-6 w-full">
+        <div class="dark-panel p-6 sm:p-8 rounded-3xl border border-[#0C6059]/30 bg-gradient-to-br from-[#EAF5F2] to-[#F4F9F8] max-w-4xl mx-auto shadow-2xl w-full">
+          
+          <div class="flex flex-col sm:flex-row items-center gap-6 pb-6 border-b border-neutral-200">
+            <div id="perfilAvatarBox" class="w-24 h-24 rounded-2xl bg-gradient-to-tr from-[#0C6059] to-[#0E6A60] text-white font-extrabold flex items-center justify-center text-3xl shadow-xl shrink-0">
+              GM
+            </div>
+            <div class="text-center sm:text-left flex-1">
+              <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                <h2 id="perfilNombreHeader" class="text-xl font-bold text-neutral-900">Dr. Kevin Jhon Lindo Alfaro</h2>
+                <span id="perfilRolBadge" class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-[#0C6059]/20 text-[#0C6059] border border-[#0C6059]/40">ADMINISTRADOR</span>
+              </div>
+              <p id="perfilCargoDesc" class="text-xs text-neutral-700 mt-1">Director Clínico & Especialista en Estética y Ortodoncia Dental</p>
+              <p id="perfilEmailHeader" class="text-xs text-[#0C6059] font-mono mt-0.5">admin@clinica.example</p>
+            </div>
+          </div>
+
+          <!-- Datos de Perfil y Formulario de Edición -->
+          <form id="formMiPerfil" class="mt-6 space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="perfilNombreInput" class="block text-xs font-semibold text-neutral-700 mb-1">Nombre Completo</label>
+                <input type="text" id="perfilNombreInput" value="Dr. Kevin Jhon Lindo Alfaro" class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl px-3 py-2 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none">
+              </div>
+
+              <div>
+                <label for="perfilEmailInput" class="block text-xs font-semibold text-neutral-700 mb-1">Correo Electrónico Oficial</label>
+                <input type="email" id="perfilEmailInput" value="admin@clinica.example" readonly class="w-full bg-neutral-50 border border-neutral-200 rounded-xl px-3 py-2 text-xs text-neutral-600 font-mono">
+              </div>
+
+              <div>
+                <label for="perfilTelefonoInput" class="block text-xs font-semibold text-neutral-700 mb-1">Teléfono / WhatsApp de Contacto</label>
+                <input type="tel" id="perfilTelefonoInput" value="+51 000 000 005" class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl px-3 py-2 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none">
+              </div>
+
+              <div>
+                <label for="perfilPasswordInput" class="block text-xs font-semibold text-neutral-700 mb-1">Contraseña de Acceso</label>
+                <div class="relative">
+                  <input type="password" id="perfilPasswordInput" value="demo-odontologo" class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl px-3 py-2 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none">
+                  <button type="button" id="btnTogglePerfilPass" class="absolute right-3 top-2 text-xs text-neutral-600 hover:text-neutral-900">👁️</button>
+                </div>
+              </div>
+
+              <div id="perfilColegiaturaContainer">
+                <label for="perfilCopInput" class="block text-xs font-semibold text-neutral-700 mb-1">Colegiatura Profesional (COP)</label>
+                <input type="text" id="perfilCopInput" value="COP 34892 - RNE 12904" class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl px-3 py-2 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none">
+              </div>
+
+              <div id="perfilHorarioContainer">
+                <label for="perfilHorarioInput" class="block text-xs font-semibold text-neutral-700 mb-1">Horario Regular de Atención</label>
+                <input type="text" id="perfilHorarioInput" value="Lunes a Sábado: 09:00 AM - 07:00 PM" class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl px-3 py-2 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none">
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-neutral-100/60 border border-neutral-200 text-xs text-neutral-600">
+              <strong class="text-neutral-900">Sede Oficial:</strong> Carino Dental Studio - Jr. Asamblea 245, Ayacucho, Perú (Frente a la Plaza de Armas).
+            </div>
+
+            <div class="flex justify-end pt-2">
+              <button type="submit" class="btn-gold px-6 py-2.5 rounded-xl text-xs font-bold shadow-md">
+                Guardar Cambios de Perfil
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ===============================================================
+       MODAL DE EVALUACIÓN CLÍNICA (ADMIN & AYUDANTE)
+       =============================================================== -->
+  <div id="modalEvaluarCita" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="dark-panel max-w-lg w-full p-6 rounded-3xl border border-[#0C6059]/40 space-y-4">
+      <div class="flex items-center justify-between pb-3 border-b border-neutral-200">
+        <div>
+          <h3 class="text-sm font-bold text-neutral-900 flex items-center gap-2">
+            <span>🩺</span> Evaluar Paciente Agendado
+          </h3>
+          <p id="evalModalPacienteSub" class="text-xs text-neutral-600">Paciente Demo 05</p>
+        </div>
+        <button id="btnCerrarEvalModal" type="button" class="text-neutral-600 hover:text-neutral-900 text-lg font-bold">✕</button>
+      </div>
+
+      <div class="p-3.5 rounded-xl bg-neutral-100 border border-neutral-200 space-y-1.5 text-xs">
+        <p class="text-neutral-700"><strong class="text-[#0C6059]">Tratamiento:</strong> <span id="evalTratamientoNombre">Profilaxis Dental</span></p>
+        <p class="text-neutral-700"><strong class="text-[#0C6059]">Motivo / Dolor reportado:</strong> <span id="evalMotivo">Limpieza anual</span></p>
+        <p class="text-neutral-700"><strong class="text-[#0C6059]">Teléfono / Contacto:</strong> <span id="evalTelefono">+51 981...</span></p>
+      </div>
+
+      <div class="space-y-2">
+        <p class="text-xs font-semibold text-neutral-700">Seleccionar Acción Rápida:</p>
+        <div class="grid grid-cols-3 gap-2">
+          <button id="btnEvalMarcarAtendido" type="button" class="py-2 rounded-xl text-xs font-bold bg-emerald-500/20 text-[#0C6059] border border-emerald-500/40 hover:bg-emerald-500/30">
+            ★ Atendido
+          </button>
+          <button id="btnEvalMarcarConfirmado" type="button" class="py-2 rounded-xl text-xs font-bold bg-blue-500/20 text-[#274E74] border border-blue-500/40 hover:bg-blue-500/30">
+            ✓ Confirmado
+          </button>
+          <button id="btnEvalIrSeguimiento" type="button" class="py-2 rounded-xl text-xs font-bold bg-amber-500/20 text-[#79450B] border border-amber-500/40 hover:bg-amber-500/30">
+            📋 A Seguimiento
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===============================================================
+       MODAL: EDITAR DATOS DE PACIENTE DE BRACKETS (MÓDULO 2)
+       Permite al Doctor modificar credenciales, contraseña olvidada, cuota, etc.
+       =============================================================== -->
+  <div id="modalEditarClienteBrackets" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="dark-panel max-w-lg w-full p-6 rounded-3xl border border-[#0C6059]/40 space-y-4 max-h-[92vh] overflow-y-auto">
+      <div class="flex items-center justify-between pb-3 border-b border-neutral-200">
+        <div>
+          <h3 class="text-sm font-bold text-neutral-900 flex items-center gap-2">
+            <span>✏️</span> Modificar Datos de Paciente de Ortodoncia
+          </h3>
+          <p class="text-xs text-[#0C6059]">Edita credenciales si el paciente olvidó su contraseña o correo</p>
+        </div>
+        <button id="btnCerrarModalEditarBrack" type="button" class="text-neutral-600 hover:text-neutral-900 text-lg font-bold">✕</button>
+      </div>
+
+      <form id="formEditarClienteBrackets" class="space-y-3.5">
+        <input type="hidden" id="editBrackId">
+
+        <div>
+          <label for="editBrackNombre" class="block text-xs font-semibold text-neutral-700 mb-1">Nombre Completo del Paciente *</label>
+          <input type="text" id="editBrackNombre" required class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl px-3 py-2 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label for="editBrackDni" class="block text-xs font-semibold text-neutral-700 mb-1">DNI / Documento</label>
+            <input type="text" id="editBrackDni" class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl px-3 py-2 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none">
+          </div>
+          <div>
+            <label for="editBrackTelefono" class="block text-xs font-semibold text-neutral-700 mb-1">Teléfono / WhatsApp</label>
+            <input type="tel" id="editBrackTelefono" class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl px-3 py-2 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none">
+          </div>
+        </div>
+
+        <!-- CREDENCIALES DE ACCESO DEL USUARIO (EDITABLES SI SE OLVIDÓ) -->
+        <div class="p-3.5 rounded-xl bg-neutral-100/90 border border-amber-500/30 space-y-3">
+          <div class="flex items-center gap-1.5 text-xs font-bold text-[#79450B]">
+            <span>🔑</span> Credenciales de Acceso (Usuario & Contraseña)
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="editBrackEmail" class="block text-[11px] font-semibold text-neutral-700 mb-1">Correo de Acceso *</label>
+              <input type="email" id="editBrackEmail" required class="w-full bg-neutral-50 border border-[#8A8A8A] rounded-xl px-3 py-1.5 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none font-mono">
+            </div>
+            <div>
+              <label for="editBrackPassword" class="block text-[11px] font-semibold text-neutral-700 mb-1">Contraseña de Acceso *</label>
+              <input type="text" id="editBrackPassword" required class="w-full bg-neutral-50 border border-[#8A8A8A] rounded-xl px-3 py-1.5 text-xs text-[#0C6059] font-bold focus:border-[#0C6059] focus:outline-none font-mono">
+            </div>
+          </div>
+          <p class="text-[10px] text-neutral-600">Si el paciente se olvidó su contraseña, el doctor puede modificarla o verla aquí directamente.</p>
+        </div>
+
+        <div>
+          <label for="editBrackTratamiento" class="block text-xs font-semibold text-neutral-700 mb-1">Tratamiento Clínico</label>
+          <input type="text" id="editBrackTratamiento" required class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl px-3 py-2 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none">
+        </div>
+
+        <div class="grid grid-cols-3 gap-2.5">
+          <div>
+            <label for="editBrackDiaControl" class="block text-[11px] font-semibold text-neutral-700 mb-1">Día de Control</label>
+            <input type="number" id="editBrackDiaControl" min="1" max="31" class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl px-2.5 py-1.5 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none">
+          </div>
+          <div>
+            <label for="editBrackCuota" class="block text-[11px] font-semibold text-neutral-700 mb-1">Cuota (S/)</label>
+            <input type="number" id="editBrackCuota" step="0.5" class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl px-2.5 py-1.5 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none">
+          </div>
+          <div>
+            <label for="editBrackEstadoPago" class="block text-[11px] font-semibold text-neutral-700 mb-1">Estado Pago</label>
+            <select id="editBrackEstadoPago" class="w-full bg-neutral-100 border border-[#8A8A8A] rounded-xl px-2 py-1.5 text-xs text-neutral-900 focus:border-[#0C6059] focus:outline-none">
+              <option value="PENDIENTE">PENDIENTE</option>
+              <option value="PAGADO">PAGADO</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-neutral-200 flex items-center justify-end gap-2.5">
+          <button type="button" id="btnCancelarEditarBrack" class="px-4 py-2 rounded-xl text-xs font-semibold bg-neutral-100 text-neutral-700 hover:text-neutral-900 hover:bg-neutral-100 transition">
+            Cancelar
+          </button>
+          <button type="submit" class="btn-gold px-5 py-2 rounded-xl text-xs font-bold shadow-md hover:brightness-110 transition flex items-center gap-1.5">
+            <span>💾</span> Guardar Cambios
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       VENTANA Y BOTÓN DE CHAT EN VIVO PARA EL ADMINISTRADOR (EN LA ESQUINA INFERIOR DERECHA)
+       IDÉNTICO EN UBICACIÓN Y ESTILO (BLANCO Y NEGRO) AL DEL CLIENTE
+       =================================================================== -->
+  <div id="carinoChatAdminFloatingContainer" class="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 font-sans">
+    
+    <!-- VENTANA DE CHAT FLOTANTE EN LA ESQUINA INFERIOR DERECHA -->
+    <div id="carinoChatWindowAdmin" class="hidden mb-3 w-[92vw] sm:w-[420px] max-w-[440px] h-[560px] max-h-[85vh] bg-[#171717] text-white border-2 border-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.95)] flex flex-col overflow-hidden transition-all duration-300 animate-fade-in">
+      
+      <!-- CABECERA DEL CHAT (NEGRO CON DETALLES EN BLANCO) -->
+      <div class="bg-black border-b border-white/20 px-4 py-3.5 flex items-center justify-between shrink-0 select-none">
+        <div class="flex items-center gap-3">
+          <div class="relative w-10 h-10 rounded-full bg-white text-black flex items-center justify-center font-extrabold text-xs shadow-md shrink-0">
+            <span>👨‍⚕️</span>
+            <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-black" title="En línea"></span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="text-sm font-bold text-white tracking-wide">Chat con Clientes</h3>
+              <span class="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-white text-black uppercase tracking-wider">Modo Staff</span>
+            </div>
+            <p class="text-[11px] text-gray-300 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              Atención y resolución de dudas en vivo
+            </p>
+          </div>
+        </div>
+
+        <!-- BOTONES EXPANDIR / CERRAR -->
+        <div class="flex items-center gap-1 text-gray-300">
+          <button id="btnChatAdminExpand" type="button" class="p-1.5 rounded-lg hover:bg-white/10 hover:text-white transition" title="Expandir tamaño">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5"></path></svg>
+          </button>
+          <button id="btnCerrarModalChatAdmin" type="button" class="p-1.5 rounded-lg hover:bg-white/10 hover:text-white transition" title="Cerrar chat">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ÁREA DE MENSAJES CON SCROLL -->
+      <div id="adminChatMessagesBody" class="flex-1 p-4 overflow-y-auto space-y-3.5 bg-[#171717] text-xs">
+        <!-- Inyectado por admin.js -->
+      </div>
+
+      <!-- PLANTILLAS RÁPIDAS DE RESPUESTA PARA EL DOCTOR -->
+      <div class="px-3 py-2 bg-zinc-950 border-t border-white/10 flex flex-wrap gap-1.5 shrink-0">
+        <span class="text-[9px] text-gray-400 self-center mr-1">Plantillas:</span>
+        <button type="button" onclick="insertarPlantillaChatAdmin('Hola, te saluda el Dr. Kevin Jhon Lindo Alfaro. Con gusto te evaluamos hoy mismo en el consultorio.')" class="px-2 py-0.5 rounded-lg bg-zinc-900 hover:bg-white hover:text-black border border-white/30 text-[10px] text-gray-200 transition">
+          Evaluación hoy
+        </button>
+        <button type="button" onclick="insertarPlantillaChatAdmin('El control mensual de brackets cuesta S/ 120.00 e incluye cambio de ligaduras, arco y profilaxis.')" class="px-2 py-0.5 rounded-lg bg-zinc-900 hover:bg-white hover:text-black border border-white/30 text-[10px] text-gray-200 transition">
+          Cuota S/ 120
+        </button>
+        <button type="button" onclick="insertarPlantillaChatAdmin('Para una molestia o urgencia acércate directamente a Jr. Bellido 245, te atenderemos de inmediato.')" class="px-2 py-0.5 rounded-lg bg-zinc-900 hover:bg-white hover:text-black border border-white/30 text-[10px] text-gray-200 transition">
+          Urgencia Jr. Bellido
+        </button>
+      </div>
+
+      <!-- FORMULARIO DE RESPUESTA DIRECTA AL CLIENTE -->
+      <div class="p-3 bg-black border-t border-white/20 shrink-0">
+        <form id="formAdminResponderChat" class="flex items-center gap-2">
+          <div class="flex-1 bg-zinc-900 border border-white/40 focus-within:border-white rounded-2xl px-3.5 py-2 flex items-center gap-2 transition">
+            <input type="text" id="inputAdminRespuestaChat" required placeholder="Escribe tu respuesta para el cliente..." class="w-full bg-transparent text-xs text-white placeholder-gray-400 focus:outline-none">
+          </div>
+          <button type="submit" class="w-10 h-10 rounded-2xl bg-white text-black hover:bg-gray-200 transition flex items-center justify-center shrink-0 shadow-md font-bold" title="Enviar respuesta al cliente">
+            <svg class="w-4 h-4 rotate-90 transform ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+          </button>
+        </form>
+        <div class="text-[9px] text-gray-400 text-center mt-1">
+          Llega instantáneamente a la ventana de dudas del cliente en vivo
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTÓN REDONDO FLOTANTE EN LA ESQUINA INFERIOR DERECHA (CON EL DIENTE DENTAL BONITO) -->
+      <button id="btnCarinoChatToggleAdmin" type="button" class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white border-2 border-slate-200 shadow-[0_10px_25px_rgba(15,23,42,0.18)] flex items-center justify-center cursor-pointer hover:scale-110 active:scale-95 transition-all duration-200 relative ml-auto group p-1" title="Chat con Clientes y Dudas en Vivo">
+        <div id="iconChatAdminBubbles" class="w-full h-full flex items-center justify-center">
+          <img src="img/chat-tooth.png" alt="Chat Dental" class="w-full h-full object-contain rounded-full transition-transform duration-200 group-hover:scale-105">
+        </div>
+        <div id="iconChatAdminClose" class="hidden w-full h-full flex items-center justify-center bg-slate-900 rounded-full text-white">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </div>
+        <span id="badgeChatAdminCount" class="hidden absolute -top-1 -right-1 bg-[#0C6059] text-white font-extrabold text-[10px] w-5 h-5 rounded-full flex items-center justify-center border-2 border-white animate-pulse shadow">1</span>
+      </button>
+    </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/api.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

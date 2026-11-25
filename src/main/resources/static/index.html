@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carino Dental Studio | Especialistas en Sonrisas - Ayacucho</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="img/favicon-carino-logo.png">
+  
+  <!-- Tipografías de Prestigio -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Hoja de Estilos Personalizada -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    body {
+      background-color: #FAFAFA;
+      color: #171717;
+      font-family: 'Inter', sans-serif;
+    }
+    .font-brand {
+      font-family: 'Cinzel', Georgia, serif;
+      letter-spacing: 0.18em;
+    }
+    .stat-number {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    .home-hero__layout {
+      display: grid;
+      gap: 1.5rem;
+      width: min(calc(100% - 2rem), 72rem);
+      margin-inline: auto;
+      padding-block: 2.75rem 2.5rem;
+    }
+    .home-hero__scene {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      aspect-ratio: 3 / 2;
+      border-radius: 1.5rem;
+      background: #0C6059;
+    }
+    .home-hero__scene img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 54% center;
+    }
+    .home-hero__scene-note,
+    .home-hero__motion {
+      position: absolute;
+      bottom: 0.75rem;
+      border-radius: 9999px;
+      background: #173C35;
+      color: #FFFFFF;
+      font-size: 0.6875rem;
+      line-height: 1rem;
+    }
+    .home-hero__scene-note {
+      left: 0.75rem;
+      padding: 0.25rem 0.625rem;
+    }
+    .home-hero__motion {
+      display: none;
+      right: 0.75rem;
+      align-items: center;
+      min-height: 2rem;
+      padding: 0.375rem 0.75rem;
+      cursor: pointer;
+    }
+    .home-hero__motion:hover {
+      background: #0B2924;
+    }
+    .home-hero__motion:focus-visible {
+      outline: 2px solid #FFFFFF;
+      outline-offset: 2px;
+    }
+    @media (min-width: 640px) {
+      .home-hero__layout { width: min(calc(100% - 3rem), 72rem); }
+    }
+    @media (min-width: 1024px) {
+      .home-hero__layout {
+        grid-template-areas: "intro scene" "details scene";
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+        grid-template-rows: 1fr auto;
+        column-gap: clamp(2rem, 4vw, 4rem);
+        min-height: 65vh;
+        padding-block: clamp(2.5rem, 5vh, 4rem);
+      }
+      .home-hero__intro { grid-area: intro; align-self: end; }
+      .home-hero__details { grid-area: details; }
+      .home-hero__scene {
+        grid-area: scene;
+        aspect-ratio: auto;
+        min-height: 25rem;
+      }
+    }
+    @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+      .home-hero__scene.has-motion img {
+        animation: escena-dental 8s ease-in-out infinite paused;
+      }
+      .home-hero__scene.is-playing img { animation-play-state: running; }
+      .home-hero__scene.has-motion .home-hero__motion { display: inline-flex; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .home-hero .animate-fade-in,
+      .home-hero .animate-bounce { animation: none; }
+    }
+    @keyframes escena-dental {
+      0%, 100% { transform: scale(1.015); }
+      50% { transform: translate(-0.6%, 0.3%) scale(1.055); }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-[#0C6059] selection:text-white bg-[#FAFAFA] text-[#171717]">
+
+  <!-- ===================================================================
+       BARRA SUPERIOR (HEADER):
+       - LOGO DE CARINO DENTAL STUDIO
+       - TEXTO ACLARATORIO AL COSTADO: "No es necesario registrarse para agendar una cita"
+       - MENÚ DE PORTADA Y ACCESO A LA CUENTA
+       =================================================================== -->
+  <header class="sticky top-0 z-30 w-full border-b border-neutral-200/80 bg-white px-4 py-2 shadow-sm max-[359px]:px-3 sm:px-6">
+    <div class="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-2.5 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:gap-4">
+      <a href="#" class="inline-flex min-w-0 justify-self-start rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0C6059]">
+        <img src="img/logo-carino-encabezado.png" alt="Carino Dental Studio" width="361" height="162" class="block h-auto w-24 max-[359px]:w-[5.5rem] sm:w-32">
+      </a>
+
+      <nav aria-label="Menú principal" class="hidden items-center gap-2 md:flex lg:gap-4">
+        <a href="#seccion-doctor" class="inline-flex min-h-10 items-center rounded-lg px-2.5 text-sm font-semibold text-neutral-700 hover:bg-[#EAF5F2] hover:text-[#084D47] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0C6059]">El doctor</a>
+        <a href="#seccion-ubicacion" class="inline-flex min-h-10 items-center rounded-lg px-2.5 text-sm font-semibold text-neutral-700 hover:bg-[#EAF5F2] hover:text-[#084D47] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0C6059]">Ubicación</a>
+      </nav>
+
+      <div class="flex items-center justify-self-end">
+        <button id="btnAbrirModalLogin" type="button" data-abrir-login class="hidden min-h-10 items-center whitespace-nowrap rounded-xl border border-neutral-300 bg-white px-3 text-sm font-semibold text-neutral-700 hover:border-[#0C6059]/60 hover:bg-[#EAF5F2] md:inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0C6059]">
+          Iniciar sesión
+        </button>
+        <details id="menuPortadaMovil" class="group relative md:hidden">
+          <summary class="inline-flex min-h-10 cursor-pointer list-none items-center justify-center gap-1 rounded-xl border border-neutral-300 px-2.5 text-xs font-semibold text-neutral-700 hover:bg-[#EAF5F2] [&::-webkit-details-marker]:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0C6059]">
+            Menú
+            <svg class="h-3.5 w-3.5 shrink-0 text-[#0C6059] group-open:rotate-180" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9 6 6 6-6"></path></svg>
+          </summary>
+          <nav aria-label="Menú principal móvil" class="absolute right-0 top-full mt-2 w-48 space-y-0.5 rounded-xl border border-neutral-200 bg-white p-1.5 shadow-lg">
+            <a href="#seccion-doctor" class="flex min-h-11 w-full items-center rounded-lg px-3 py-2 text-left text-sm font-semibold text-neutral-700 hover:bg-[#EAF5F2] hover:text-[#084D47] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0C6059]">El doctor</a>
+            <a href="#seccion-ubicacion" class="flex min-h-11 w-full items-center rounded-lg px-3 py-2 text-left text-sm font-semibold text-neutral-700 hover:bg-[#EAF5F2] hover:text-[#084D47] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0C6059]">Ubicación</a>
+            <button id="btnAbrirModalLoginMovil" type="button" data-abrir-login class="flex min-h-11 w-full items-center rounded-lg px-3 py-2 text-left text-sm font-semibold text-neutral-700 hover:bg-[#EAF5F2] hover:text-[#084D47] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0C6059]">Iniciar sesión</button>
+          </nav>
+        </details>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================================================================
+       SECCIÓN 1: PORTADA PRINCIPAL (HERO)
+       - Título principal limpio y elevado
+       - Los 2 ÚNICOS BOTONES:
+         1. AGENDA TU CITA AHORA MISMO
+         2. WhatsApp de la clínica
+       - Texto aclaratorio: "No es necesario registrarse para agendar una cita"
+       - Guías de confianza: "Confirmación Inmediata", "Horarios en Vivo" y
+         "Atención 24/7 del día"
+       =================================================================== -->
+  <section class="home-hero bg-[#084D47] selection:bg-[#B8E6DC] selection:text-[#084D47]">
+    <div class="home-hero__layout">
+      <div class="home-hero__intro text-center lg:text-left space-y-5 sm:space-y-6 animate-fade-in">
+      
+        <!-- Título de Impacto -->
+        <div class="space-y-4">
+          <h1 class="text-4xl max-[359px]:text-[2rem] sm:text-6xl lg:text-5xl xl:text-6xl font-serif font-bold text-white tracking-tight leading-[1.06] text-balance">
+            Cuidamos tu sonrisa con <span class="text-[#B8E6DC]">excelencia</span>.
+          </h1>
+          <p class="text-[#E0F1ED] text-sm sm:text-lg max-w-lg mx-auto lg:mx-0 font-normal leading-relaxed">
+            Atención de alta gama, especialistas dedicados y reserva inmediata de citas en tiempo real.
+          </p>
+        </div>
+
+        <!-- LOS 2 ÚNICOS BOTONES EN LA PORTADA -->
+        <div class="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center lg:justify-start gap-3 pt-1 max-w-lg mx-auto lg:mx-0">
+
+          <!-- BOTÓN 1: AGENDA TU CITA AHORA MISMO -->
+          <button id="btnAbrirModalCita" type="button" data-abrir-cita class="w-full sm:w-auto min-h-12 inline-flex items-center justify-center gap-2 px-6 lg:max-xl:px-4 py-3.5 text-xs sm:text-sm lg:max-xl:text-xs font-bold tracking-wide uppercase rounded-2xl border border-white bg-white text-[#084D47] hover:bg-[#E0F1ED] hover:border-[#E0F1ED] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white transition hover:-translate-y-0.5 active:scale-[0.98]">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            AGENDA TU CITA AHORA MISMO
+          </button>
+
+          <!-- CHAT DE WHATSAPP -->
+          <a href="https://wa.me/51933645279?text=%C2%A1Hola%2C%20Carino%20Dental%20Studio%21%20Me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios%20y%20c%C3%B3mo%20agendar%20una%20cita.%20%C2%A1Gracias%21" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto min-h-12 inline-flex items-center justify-center gap-2.5 px-6 lg:max-xl:px-4 py-3.5 text-xs sm:text-sm lg:max-xl:text-xs font-bold tracking-wide rounded-2xl border border-[#B8E6DC] text-white hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white transition hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer">
+            <svg aria-hidden="true" class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+            </svg>
+            WhatsApp
+          </a>
+        </div>
+
+        <!-- TEXTO ACLARATORIO DESTACADO DEBAJO DE LOS BOTONES -->
+        <div class="pt-1">
+          <span class="inline-flex items-center gap-2 text-xs text-[#E0F1ED] font-medium">
+            <svg class="w-4 h-4 shrink-0 text-[#B8E6DC]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            No es necesario registrarse para agendar una cita
+          </span>
+        </div>
+
+      </div>
+
+      <figure class="home-hero__scene" id="escenaDental">
+        <img src="img/consulta-dental-portada.jpg" alt="Odontólogo ajustando la luz de exploración junto a una paciente en el sillón dental" width="1536" height="1024" fetchpriority="high">
+        <button type="button" id="btnPausarEscenaDental" class="home-hero__motion">Pausar animación</button>
+        <figcaption class="home-hero__scene-note">Imagen ilustrativa</figcaption>
+      </figure>
+
+      <!-- INSIGNIAS DE CONFIANZA: CONFIRMACIÓN, HORARIOS EN VIVO Y ATENCIÓN 24/7 DEL DÍA -->
+      <div class="home-hero__details border-t border-white/25 pt-4 flex flex-col items-center lg:items-start gap-3 text-center lg:text-left text-xs text-[#E0F1ED]">
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-x-4 gap-y-2">
+          <span class="flex items-center gap-1.5 font-medium">
+            <svg class="w-4 h-4 shrink-0 text-[#B8E6DC]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            Confirmación Inmediata
+          </span>
+          <span class="flex items-center gap-1.5 font-medium">
+            <svg class="w-4 h-4 shrink-0 text-[#B8E6DC]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+            Horarios en Vivo
+          </span>
+          <span class="flex items-center gap-1.5 font-medium">
+            <svg class="w-4 h-4 shrink-0 text-[#B8E6DC]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            Atención 24/7 del día
+          </span>
+        </div>
+
+        <a href="#seccion-doctor" class="inline-flex items-center gap-1.5 text-[#E0F1ED] hover:text-white hover:underline transition pt-1 text-xs font-medium">
+          <span>Desliza para conocer a nuestro especialista y ubicación</span>
+          <svg class="w-4 h-4 shrink-0 animate-bounce text-[#B8E6DC]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       SECCIÓN 2: PERFIL DEL DOCTOR (FONDO LIMPIO Y RADIANTE)
+       =================================================================== -->
+  <section id="seccion-doctor" class="scroll-mt-20 py-14 sm:py-16 px-4 bg-white border-t border-neutral-200">
+    <div class="max-w-6xl mx-auto space-y-12">
+      
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <span class="text-xs font-bold uppercase tracking-widest text-[#0C6059]">Seguridad y Confianza en Cada Tratamiento</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#171717]">Tu tranquilidad es nuestro compromiso</h2>
+      </div>
+
+      <!-- Ficha del Doctor y Frase de Confiabilidad -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#FAFAFA] p-8 sm:p-10 rounded-3xl border border-neutral-200 shadow-xl">
+        
+        <!-- Foto / Perfil del Doctor -->
+        <div class="lg:col-span-5 flex flex-col items-center text-center space-y-4">
+          <div class="relative">
+            <div class="w-36 h-36 sm:w-44 sm:h-44 rounded-full p-1 bg-gradient-to-tr from-[#0C6059] to-[#0E6A60] shadow-xl">
+              <div class="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden border-4 border-white">
+                <svg class="w-24 h-24 text-neutral-600" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+              </div>
+            </div>
+            <span class="absolute bottom-1 right-2 bg-[#0C6059] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full border-2 border-white shadow">
+              Disponible
+            </span>
+          </div>
+
+          <div>
+            <h3 class="text-2xl font-serif font-bold text-[#171717]">Dr. Kevin Jhon Lindo Alfaro</h3>
+            <p class="text-sm font-semibold text-[#0C6059]">Cirujano Dentista • Director Clínico</p>
+            <div class="flex items-center justify-center gap-3 mt-2 text-xs text-neutral-600 font-medium">
+              <span>🎂 <strong>37 años</strong> de edad</span>
+              <span>•</span>
+              <span>🎖️ <strong>+12 años</strong> de experiencia clínica</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Frase que da Paz, Tranquilidad y Confianza al Paciente -->
+        <div class="lg:col-span-7 space-y-6 lg:border-l lg:border-neutral-200 lg:pl-8">
+          <div class="relative">
+            <span class="text-5xl font-serif text-[#0C6059]/40 absolute -top-5 -left-3">“</span>
+            <p class="text-base sm:text-lg text-neutral-700 font-serif italic leading-relaxed pt-3">
+              Entiendo perfectamente que acudir al dentista puede generar temor, ansiedad o dudas. Por eso, en <strong>Carino Dental Studio</strong> nos tomamos el tiempo de escucharte con paciencia, explicarte cada paso y aplicar técnicas indoloras y tecnología avanzada para que te sientas en completa paz. Mi mayor satisfacción es que salgas del consultorio sonriendo y con total tranquilidad.
+            </p>
+          </div>
+
+          <!-- Métricas de Confiabilidad -->
+          <div class="grid grid-cols-3 gap-3 pt-4 border-t border-neutral-200 text-center">
+            <div class="p-3 bg-white rounded-2xl border border-neutral-200 shadow-sm">
+              <div class="stat-number text-2xl sm:text-3xl font-bold text-[#0C6059]">100%</div>
+              <p class="text-[11px] text-neutral-600 mt-1">Tratamientos indoloros y seguros</p>
+            </div>
+            <div class="p-3 bg-white rounded-2xl border border-neutral-200 shadow-sm">
+              <div class="stat-number text-2xl sm:text-3xl font-bold text-[#171717]">+12</div>
+              <p class="text-[11px] text-neutral-600 mt-1">Años cuidando sonrisas</p>
+            </div>
+            <div class="p-3 bg-white rounded-2xl border border-neutral-200 shadow-sm">
+              <div class="stat-number text-2xl sm:text-3xl font-bold text-[#0C6059]">+4,800</div>
+              <p class="text-[11px] text-neutral-600 mt-1">Pacientes satisfechos</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       SECCIÓN 3: UBICACIÓN DEL CONSULTORIO (GOOGLE MAPS)
+       =================================================================== -->
+  <section id="seccion-ubicacion" class="scroll-mt-20 py-16 sm:py-20 px-4 bg-[#EAF5F2] border-t border-[#C7E2DB]">
+    <div class="max-w-6xl mx-auto space-y-8">
+      
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <span class="text-xs font-bold uppercase tracking-widest text-[#0C6059]">¿Dónde nos encontramos?</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#171717]">Visítanos en Carino Dental Ayacucho</h2>
+        <p class="text-xs sm:text-sm text-neutral-700">
+          Ubicación céntrica, instalaciones confortables y modernos gabinetes clínicos.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white p-6 sm:p-8 rounded-3xl border border-neutral-200 shadow-xl">
+        
+        <!-- MAPA DE GOOGLE INTERACTIVO -->
+        <div class="lg:col-span-7 h-80 sm:h-96 rounded-2xl overflow-hidden border border-neutral-200 relative shadow-inner">
+          <iframe 
+            src="https://maps.google.com/maps?q=Carino+Dental+Ayacucho&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <!-- DATOS DE LA UBICACIÓN Y BOTÓN AL LINK EXACTO -->
+        <div class="lg:col-span-5 space-y-5">
+          <div class="space-y-3">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#EAF5F2] text-[#0C6059] text-xs font-semibold border border-[#0C6059]/40">
+              📍 Carino Dental • Ayacucho
+            </div>
+            <h3 class="text-2xl font-serif font-bold text-[#171717]">Consultorio Odontológico Especializado</h3>
+            <p class="text-xs text-neutral-700 leading-relaxed">
+              Atención personalizada con previa cita para evitar salas de espera llenas y brindarte el tiempo que tu salud dental merece.
+            </p>
+          </div>
+
+          <div class="space-y-3 text-xs text-neutral-700 pt-2 border-t border-neutral-200">
+            <div class="flex items-start gap-2.5">
+              <span class="text-[#0C6059] font-bold text-base">🏢</span>
+              <span><strong>Ciudad:</strong> Ayacucho, Perú.</span>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <span class="text-[#0C6059] font-bold text-base">⏰</span>
+              <span><strong>Horario:</strong> Lunes a Sábado de 09:00 AM a 07:00 PM (Atención 24/7 de guardia para emergencias).</span>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <span class="text-[#0C6059] font-bold text-base">📞</span>
+              <span><strong>Central de Citas:</strong> +51 000 000 010</span>
+            </div>
+          </div>
+
+          <!-- BOTÓN DIRECTO AL LINK DE GOOGLE MAPS COMPARTIDO -->
+          <div class="pt-2">
+            <a href="https://www.google.com/maps?sca_esv=d692c529a49cacda&output=search&q=carino+dental+ayacucho" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="btn-gold w-full py-3.5 text-xs font-bold uppercase tracking-wider rounded-xl shadow-lg flex items-center justify-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              Abrir Ubicación en Google Maps
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       VENTANA MODAL 1: AGENDAR CITA (CLEAN WHITE & GOLD)
+       Muestra Horarios (Libres y Ocupados en Sombreado Oscuro)
+       Pide: Nombre, DNI, Teléfono y MOTIVO O DOLOR (OPCIONAL)
+       =================================================================== -->
+  <div id="modalAgendarCita" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white text-neutral-900 rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border-2 border-[#0C6059] animate-fade-in relative my-8">
+      
+      <!-- Botón de Cerrar Modal -->
+      <button id="btnCerrarModalCita" type="button" class="absolute top-5 right-5 text-neutral-600 hover:text-neutral-700 p-1.5 rounded-full hover:bg-neutral-100 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+
+      <!-- Encabezado Modal con Marca Tipográfica Fina -->
+      <div class="mb-4 pb-3 border-b border-neutral-200 text-center">
+        <div class="inline-flex items-center gap-2 mb-2 bg-[#EAF5F2] px-3.5 py-1.5 rounded-xl border border-[#0C6059]/40 shadow-sm">
+          
+          <div class="flex items-baseline gap-1 font-sans">
+            <span class="text-sm font-extrabold text-[#171717] tracking-tight">CARINO</span>
+            <span class="text-sm font-extrabold text-[#0C6059] tracking-tight">DENTAL</span>
+            <span class="text-[9px] font-bold text-neutral-600 tracking-widest uppercase">STUDIO</span>
+          </div>
+        </div>
+        <h2 class="font-serif font-bold text-xl text-[#171717]">Agendar tu Cita Dental</h2>
+        <p class="text-xs text-neutral-600 mt-0.5">Elige tu horario y describe tus datos para reservarte el espacio.</p>
+        <div class="mt-2 text-[11px] text-[#0C6059] bg-[#EAF5F2] py-1 px-2.5 rounded-lg border border-[#0C6059]/30 inline-block font-medium">
+          ✨ No es necesario registrarse para agendar tu cita
+        </div>
+      </div>
+
+      <!-- FORMULARIO: HORARIOS + NOMBRE, DNI, TELÉFONO Y MOTIVO/DOLOR OPCIONAL -->
+      <form id="formCitaModal" class="space-y-3.5">
+
+        <!-- 1. SELECCIÓN DE FECHA -->
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label for="modalFechaInput" class="text-xs font-bold text-neutral-700">1. Fecha de Atención</label>
+            <span class="text-[11px] text-[#0C6059] font-semibold bg-[#EAF5F2] px-2 py-0.5 rounded border border-[#0C6059]/40">En Tiempo Real</span>
+          </div>
+          <input type="date" id="modalFechaInput" required class="w-full bg-neutral-50 border border-[#8A8A8A] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-medium text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#0C6059] focus:bg-white">
+        </div>
+
+        <!-- 2. GRILLA DE HORARIOS (LIBRES VS OCUPADOS SOMBREADOS EN NEGRO) -->
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="text-xs font-bold text-neutral-700">2. Horarios del Consultorio</label>
+            <div class="flex items-center gap-3 text-[10px]">
+              <span class="flex items-center gap-1 text-neutral-700">
+                <span class="w-2.5 h-2.5 rounded bg-white border border-[#0C6059]"></span> Libre
+              </span>
+              <span class="flex items-center gap-1 text-neutral-600">
+                <span class="w-2.5 h-2.5 rounded bg-[#262626] border border-neutral-300"></span> Ocupado (Sombreado)
+              </span>
+            </div>
+          </div>
+
+          <div id="modalSlotsLoading" class="hidden text-center py-4 text-xs text-neutral-600">
+            <svg class="animate-spin h-5 w-5 text-[#0C6059] mx-auto mb-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            Consultando disponibilidad del doctor...
+          </div>
+
+          <!-- Contenedor dinámico de botones de hora -->
+          <div id="modalSlotsContainer" class="grid grid-cols-3 sm:grid-cols-4 gap-2 max-h-40 overflow-y-auto p-1.5 bg-neutral-50 rounded-xl border border-neutral-200">
+            <!-- Rellenado por client.js -->
+          </div>
+        </div>
+
+        <!-- 3. CAMPOS: NOMBRE, DNI, TELÉFONO Y MOTIVO/DOLOR OPCIONAL -->
+        <div class="space-y-2.5 pt-1">
+          <div>
+            <input type="text" id="modalNombreInput" required placeholder="Nombre y Apellidos *" class="w-full bg-neutral-50 border border-[#8A8A8A] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#0C6059] focus:bg-white placeholder-neutral-600">
+          </div>
+
+          <div class="grid grid-cols-2 gap-2.5">
+            <div>
+              <input type="text" id="modalDniInput" required placeholder="DNI *" maxlength="15" class="w-full bg-neutral-50 border border-[#8A8A8A] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#0C6059] focus:bg-white placeholder-neutral-600">
+            </div>
+            <div>
+              <input type="tel" id="modalTelefonoInput" required placeholder="Teléfono / WhatsApp *" maxlength="20" class="w-full bg-neutral-50 border border-[#8A8A8A] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#0C6059] focus:bg-white placeholder-neutral-600">
+            </div>
+          </div>
+
+          <!-- MOTIVO O DOLOR OPCIONAL -->
+          <div>
+            <textarea id="modalMotivoInput" rows="2" placeholder="Motivo de consulta o dolor (opcional): Ej. Dolor en molar al masticar, revisión..." class="w-full bg-neutral-50 border border-[#8A8A8A] rounded-xl px-3.5 py-2 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#0C6059] focus:bg-white placeholder-neutral-600"></textarea>
+          </div>
+        </div>
+
+        <!-- BOTÓN DE CONFIRMACIÓN -->
+        <button type="submit" id="btnConfirmarCita" class="btn-gold w-full py-3.5 text-xs sm:text-sm font-bold tracking-wider uppercase rounded-xl shadow-md mt-1">
+          Confirmar Reserva
+        </button>
+
+        <p class="text-[11px] text-center text-neutral-600">
+          Al confirmar, el sistema notifica de inmediato a la asistente y al doctor con la hora exacta.
+        </p>
+      </form>
+
+      <!-- VOUCHER DE CONFIRMACIÓN -->
+      <div id="modalVoucherConfirm" class="hidden text-center py-4 space-y-3 animate-fade-in">
+        <div class="w-12 h-12 rounded-full bg-emerald-100 text-[#0C6059] border border-emerald-300 mx-auto flex items-center justify-center text-xl font-bold shadow-xs">
+          ✓
+        </div>
+        <h3 class="font-serif font-bold text-xl text-[#171717]">¡Cita Registrada con Éxito!</h3>
+        <div class="bg-neutral-50 border border-[#0C6059]/40 rounded-xl p-3.5 text-xs text-left space-y-1.5 text-neutral-700 shadow-xs">
+          <div class="flex justify-between border-b border-neutral-200 pb-1">
+            <span class="text-neutral-600">Código de Reserva:</span>
+            <strong id="confirmCodigo" class="font-mono text-[#0C6059] text-sm">RES-000</strong>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-neutral-600">Paciente:</span>
+            <span id="confirmPaciente" class="font-semibold text-neutral-900">-</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-neutral-600">DNI:</span>
+            <span id="confirmDni" class="font-semibold text-neutral-900">-</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-neutral-600">Teléfono:</span>
+            <span id="confirmTelefono" class="font-semibold text-neutral-900">-</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-neutral-600">Fecha y Hora:</span>
+            <span id="confirmFechaHora" class="font-bold text-[#0C6059]">-</span>
+          </div>
+          <div id="confirmMotivoRow" class="flex justify-between border-t border-neutral-200 pt-1 text-neutral-700">
+            <span>Motivo / Dolor:</span>
+            <span id="confirmMotivo" class="italic">-</span>
+          </div>
+          <div class="flex justify-between text-[11px] text-[#0C6059] pt-0.5 font-medium">
+            <span>Hora de Registro:</span>
+            <span id="confirmHoraRegistro" class="font-semibold">-</span>
+          </div>
+        </div>
+        <p class="text-xs text-neutral-600">La asistente y el doctor han recibido la notificación para tu atención.</p>
+        <button type="button" id="btnCerrarVoucher" class="btn-gold w-full py-2.5 text-xs">
+          Entendido, Cerrar
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       VENTANA MODAL 2: INICIAR SESIÓN (CON CORREO Y CONTRASEÑA)
+       =================================================================== -->
+  <div id="modalLogin" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white text-neutral-900 rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl border border-[#0C6059]/60 animate-fade-in relative my-8">
+      
+      <!-- Botón de Cerrar Modal -->
+      <button id="btnCerrarModalLogin" type="button" class="absolute top-5 right-5 text-neutral-600 hover:text-neutral-700 p-1.5 rounded-full hover:bg-neutral-100 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+
+      <!-- Encabezado Modal -->
+      <div class="mb-4 pb-3 border-b border-neutral-200 text-center">
+        <img src="img/logo-carino-encabezado.png" alt="Carino Dental Studio" width="361" height="162" class="mx-auto mb-2 block h-auto w-[110px] max-[359px]:w-24">
+        <h2 class="font-serif font-bold text-xl text-[#171717]">Iniciar Sesión</h2>
+        <p class="text-xs text-neutral-600 mt-0.5">Ingresa con tu correo y contraseña registrados</p>
+      </div>
+
+      <!-- AVISO ACLARATORIO EN EL MODAL -->
+      <div class="bg-[#EAF5F2] border border-[#0C6059]/40 rounded-xl p-2.5 text-center text-xs text-[#0C6059] mb-4 flex items-center justify-center gap-1.5 shadow-xs">
+        <svg class="w-4 h-4 text-[#0C6059] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <span><strong class="text-[#0C6059]">Recuerda:</strong> No es necesario registrarse para agendar una cita.</span>
+      </div>
+
+      <!-- Formulario Login Unificado: Correo y Contraseña para todos -->
+      <form id="formLogin" class="space-y-3.5">
+        <div>
+          <label class="block text-xs font-semibold text-neutral-700 mb-1">Correo Electrónico *</label>
+          <input type="email" id="loginCorreoInput" required placeholder="paciente07@clinica.example o tu correo" class="w-full bg-neutral-50 border border-[#8A8A8A] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#0C6059] focus:bg-white placeholder-neutral-600">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-neutral-700 mb-1">Contraseña *</label>
+          <input type="password" id="loginPasswordInput" required placeholder="••••••••" class="w-full bg-neutral-50 border border-[#8A8A8A] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#0C6059] focus:bg-white placeholder-neutral-600">
+        </div>
+        <button type="submit" class="btn-gold w-full py-3 text-xs sm:text-sm font-bold uppercase tracking-wider rounded-xl shadow-md mt-2">
+          Iniciar Sesión
+        </button>
+      </form>
+
+      <!-- Pie del Modal -->
+      <div class="pt-4 mt-4 border-t border-neutral-200 text-center text-xs text-neutral-600">
+        <span>¿Aún no tienes cuenta?</span>
+        <button id="btnSwitchToRegister" type="button" class="text-[#0C6059] font-bold hover:underline ml-1">Regístrate aquí</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       VENTANA MODAL 3: REGISTRARSE (NOMBRE, CORREO, TELÉFONO, DNI Y CONTRASEÑA)
+       =================================================================== -->
+  <div id="modalRegistro" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white text-neutral-900 rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl border border-[#0C6059]/60 animate-fade-in relative my-8">
+      
+      <!-- Botón de Cerrar Modal -->
+      <button id="btnCerrarModalRegistro" type="button" class="absolute top-5 right-5 text-neutral-600 hover:text-neutral-700 p-1.5 rounded-full hover:bg-neutral-100 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+
+      <!-- Encabezado Modal -->
+      <div class="mb-4 pb-3 border-b border-neutral-200 text-center">
+        <img src="img/logo-carino-encabezado.png" alt="Carino Dental Studio" width="361" height="162" class="mx-auto mb-2 block h-auto w-[110px] max-[359px]:w-24">
+        <h2 class="font-serif font-bold text-xl text-[#171717]">Crear Cuenta</h2>
+        <p class="text-xs text-neutral-600 mt-0.5">Regístrate con tus datos para gestionar tu historial</p>
+      </div>
+
+      <!-- AVISO ACLARATORIO EN EL MODAL -->
+      <div class="bg-[#EAF5F2] border border-[#0C6059]/40 rounded-xl p-2.5 text-center text-xs text-[#0C6059] mb-4 flex items-center justify-center gap-1.5 shadow-xs">
+        <svg class="w-4 h-4 text-[#0C6059] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <span><strong class="text-[#0C6059]">Recuerda:</strong> No es necesario registrarse para agendar una cita.</span>
+      </div>
+
+      <!-- Formulario de Registro: 5 CAMPOS (NOMBRE, CORREO, TELÉFONO, DNI Y CONTRASEÑA) -->
+      <form id="formRegistroPaciente" class="space-y-3">
+        <!-- 1. NOMBRE -->
+        <div>
+          <label class="block text-xs font-semibold text-neutral-700 mb-1">Nombre Completo *</label>
+          <input type="text" id="regNombreInput" required placeholder="Ej. Camila Morales García" class="w-full bg-neutral-50 border border-[#8A8A8A] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#0C6059] focus:bg-white placeholder-neutral-600">
+        </div>
+
+        <!-- 2. CORREO -->
+        <div>
+          <label class="block text-xs font-semibold text-neutral-700 mb-1">Correo Electrónico *</label>
+          <input type="email" id="regCorreoInput" required placeholder="paciente15@clinica.example" class="w-full bg-neutral-50 border border-[#8A8A8A] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#0C6059] focus:bg-white placeholder-neutral-600">
+        </div>
+
+        <!-- 3. TELÉFONO Y 4. DNI -->
+        <div class="grid grid-cols-2 gap-2.5">
+          <div>
+            <label class="block text-xs font-semibold text-neutral-700 mb-1">Teléfono / WhatsApp *</label>
+            <input type="tel" id="regTelefonoInput" required placeholder="Ej. 987654321" maxlength="20" class="w-full bg-neutral-50 border border-[#8A8A8A] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#0C6059] focus:bg-white placeholder-neutral-600">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-neutral-700 mb-1">DNI *</label>
+            <input type="text" id="regDniInput" required placeholder="8 dígitos" maxlength="15" class="w-full bg-neutral-50 border border-[#8A8A8A] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#0C6059] focus:bg-white placeholder-neutral-600">
+          </div>
+        </div>
+
+        <!-- 5. CONTRASEÑA -->
+        <div>
+          <label class="block text-xs font-semibold text-neutral-700 mb-1">Contraseña *</label>
+          <input type="password" id="regPasswordInput" required placeholder="Crea una contraseña segura" class="w-full bg-neutral-50 border border-[#8A8A8A] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#0C6059] focus:bg-white placeholder-neutral-600">
+        </div>
+
+        <button type="submit" class="btn-gold w-full py-3 text-xs sm:text-sm font-bold uppercase tracking-wider rounded-xl shadow-md mt-2">
+          Crear mi Cuenta
+        </button>
+      </form>
+
+      <!-- Pie del Modal -->
+      <div class="pt-4 mt-3 border-t border-neutral-200 text-center text-xs text-neutral-600">
+        <span>¿Ya tienes cuenta?</span>
+        <button id="btnSwitchToLogin" type="button" class="text-[#0C6059] font-bold hover:underline ml-1">Inicia sesión</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       PIE DE PÁGINA: BLANCO LIMPIO & ORO ELEGANTE
+       =================================================================== -->
+  <footer class="w-full bg-white py-6 px-6 text-center text-xs text-neutral-700 border-t border-neutral-200 shadow-xs">
+    <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-4">
+      <div class="flex flex-col items-center gap-2.5 sm:flex-row sm:gap-3">
+        <img src="img/logo-carino-encabezado.png" alt="Carino Dental Studio" width="361" height="162" class="block h-auto w-24 shrink-0">
+        <span class="text-neutral-700 hidden sm:inline">•</span>
+        <span class="font-medium text-neutral-700">Ayacucho, Perú • Especialistas en Estética y Salud Dental</span>
+      </div>
+      <p class="text-neutral-600 text-[11px] max-[359px]:pr-4">
+        © 2026 Carino Dental Studio <span class="hidden sm:inline">•</span> <span class="block sm:inline">Todos los derechos reservados</span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/client.js"></script>
+  <script src="js/chat.js"></script>
+  <script>
+    (() => {
+      const scene = document.getElementById('escenaDental');
+      const button = document.getElementById('btnPausarEscenaDental');
+      if (!scene || !button || !('IntersectionObserver' in window)) return;
+
+      let visible = false;
+      let paused = false;
+      const updateMotion = () => {
+        scene.classList.toggle('is-playing', visible && !document.hidden && !paused);
+      };
+
+      const observer = new IntersectionObserver(([entry]) => {
+        visible = entry.isIntersecting;
+        updateMotion();
+      });
+      observer.observe(scene);
+      document.addEventListener('visibilitychange', updateMotion);
+      button.addEventListener('click', () => {
+        paused = !paused;
+        button.textContent = paused ? 'Reanudar animación' : 'Pausar animación';
+        updateMotion();
+      });
+      scene.classList.add('has-motion');
+    })();
+  </script>
+</body>
+</html>
